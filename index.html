@@ -3,53 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Stylianos Prentakis — Page Title</title>
+  <title>Stylianos Prentakis — Main</title>
 
-  <!-- Fonts for Manrope + Comfortaa -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Comfortaa:wght@700&display=swap" rel="stylesheet" />
-
-  <!-- Global styles -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/favicon.png" />
-
-  <!-- Meta (optional but recommended) -->
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#0c0f17" />
-  <meta name="description" content="Personal site of Stylianos Prentakis: CV, tutoring material, and project updates." />
 </head>
-
 <body>
-  <main class="container">
-    <!-- Title + profile image -->
-    <div class="title-container">
-      <h1>Stylianos Prentakis</h1>
-      <!-- update the filename after you upload -->
-      <img src="assets/profile.png" alt="Profile picture" class="profile-pic" />
-    </div>
+  <main class="hero">
+    <div class="hero-inner">
+      <div class="title-row">
+        <h1 class="page-title">Stylianos Prentakis</h1>
+        <img class="avatar" src="assets/profile.png" alt="Portrait of Stylianos Prentakis" />
+      </div>
 
-    <!-- Intro text -->
-    <p class="intro-text">
-      Welcome. This site collects my background, selected tutoring resources, and brief notes on projects and research directions.
-    </p>
+      <p class="subtitle">
+        Welcome. This site collects my background, selected tutoring resources, and brief notes on projects and research directions.
+      </p>
 
-    <!-- Navigation cards -->
-    <div class="cards">
-      <a href="cv.html" class="card">
-        <h2>Curriculum Vitae</h2>
-        <p>Academic record, honors, experience.</p>
-      </a>
-      <a href="tutoring.html" class="card">
-        <h2>Tutoring Material</h2>
-        <p>Notes and exercises for students.</p>
-      </a>
-      <a href="updates.html" class="card">
-        <h2>Project Updates</h2>
-        <p>Research and side projects.</p>
-      </a>
+      <div class="quick-actions">
+        <a href="cv.html" class="card lift navcard">
+          <h2>Curriculum Vitae</h2>
+          <p>Academic record, honors, experience.</p>
+        </a>
+        <a href="tutoring.html" class="card lift navcard">
+          <h2>Tutoring Material</h2>
+          <p>Notes and exercises for students.</p>
+        </a>
+        <a href="updates.html" class="card lift navcard">
+          <h2>Project Updates</h2>
+          <p>Research and side projects.</p>
+        </a>
+      </div>
     </div>
   </main>
 </body>
