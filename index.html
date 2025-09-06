@@ -5,44 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stylianos Prentakis</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* Round profile image next to title */
-    .title-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .profile-pic {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #444;
-    }
-
-    .intro-text {
-      margin-top: 1rem;
-      text-align: center;
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  </style>
 </head>
 <body>
   <main>
+    <!-- Title + profile image -->
     <div class="title-container">
       <h1>Stylianos Prentakis</h1>
       <img src="assets/profile.png" alt="Profile picture" class="profile-pic">
     </div>
 
+    <!-- Intro text -->
     <p class="intro-text">
       Welcome to my personal website. Here you’ll find my academic background, teaching material, and updates on projects I am working on.
     </p>
+
+    <!-- Navigation cards -->
+    <div class="cards">
+      <a href="cv.html" class="card">
+        <h2>Curriculum Vitae</h2>
+        <p>Academic record, honors, and experience</p>
+      </a>
+      <a href="tutoring.html" class="card">
+        <h2>Tutoring Material</h2>
+        <p>Notes and exercises for students</p>
+      </a>
+      <a href="updates.html" class="card">
+        <h2>Project Updates</h2>
+        <p>Research and side projects I am working on</p>
+      </a>
+    </div>
   </main>
 </body>
 </html>
