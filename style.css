@@ -1,68 +1,222 @@
+/*
+  Stelios Personal Site — style.css v2
+  Purpose: tokenized, fast, accessible CSS for a 4‑page static site.
+  How to customize: tweak variables in :root. Light mode auto via prefers-color-scheme.
+  Files using this: index.html, cv.html, tutoring.html, updates.html
+*/
+
+/* =========================
+   1) DESIGN TOKENS
+   ========================= */
 :root{
-  --bg:#06070b;
-  --surface:#0c0f17;
-  --text:#e8ebf2;
-  --muted:#99a2b3;
-  --outline:#202637;
-  --accent:#54c5ff;
-  --accent-2:#a78bfa;
-  --accent-3:#1de9d1;
-  --radius:14px;
-  --shadow-lg: 0 10px 30px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.03) inset;
-  --shadow-sm: 0 6px 20px rgba(0,0,0,.25);
+  /* Color system — dark first */
+  --bg: #0b1220;
+  --ink: #e6edf3;
+  --muted: #9fb0c7;
+  --surface: #0f172a;            /* surfaces/cards */
+  --border: #23324a;
+  --accent: #64d2ff;             /* cyan accent */
+  --accent-2: #b27aff;           /* violet accent */
+
+  /* Typography */
+  --font-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
+  --fs-0: clamp(0.9rem, 0.85rem + 0.2vw, 1rem);   /* base */
+  --fs-1: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
+  --fs-2: clamp(1.35rem, 1.1rem + 0.9vw, 1.75rem);
+  --fs-3: clamp(1.8rem, 1.4rem + 1.4vw, 2.4rem);
+
+  /* Layout */
+  --max: 880px;
+  --gap: 16px;
+  --radius: 14px;
+  --shadow: 0 6px 30px rgba(0,0,0,.25);
+
+  /* Motion */
+  --dur: 180ms;
+  --ease: cubic-bezier(.2,.7,.2,1);
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Manrope',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(1200px 800px at 10% 10%,#0a1120 0%,var(--bg) 60%),radial-gradient(900px 900px at 90% 80%,#0a0f19 0%,var(--bg) 70%);color:var(--text);line-height:1.6}
-.bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;filter:saturate(115%) blur(.2px)}
-.site-header{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:rgba(8,10,15,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--outline)}
-.brand{font-family:'Comfortaa',system-ui;font-weight:700;letter-spacing:.3px}
-.site-nav{display:flex;gap:16px}
-.site-nav a{padding:10px 8px;border-radius:8px;position:relative}
-.site-nav a[aria-current="page"]{outline:2px solid rgba(112,178,255,.35)}
-.site-nav a::after{content:"";position:absolute;left:8px;right:8px;bottom:6px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
-.site-nav a:hover::after{transform:scaleX(1)}
-.nav-toggle{display:none;font:inherit;background:none;border:1px solid var(--outline);color:var(--text);padding:6px 10px;border-radius:8px}
-.hero{min-height:58vh;display:grid;place-items:center;text-align:center;padding:56px 16px}
-.hero-inner{max-width:1000px}
-.page-title{font-family:'Comfortaa',system-ui;font-size:clamp(2.6rem,6.2vw,5.2rem);font-weight:700;letter-spacing:.02em;line-height:1.05;margin:0 0 8px 0;background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent}
-.tight-break{display:inline}
-@media (max-width:520px){.tight-break{display:block}}
-.subtitle{font-size:clamp(1.05rem,2.6vw,1.4rem);color:var(--muted);margin:0 0 12px 0}
-.hero .cta{display:flex;gap:12px;justify-content:center;margin-top:16px}
-.section{padding:64px 16px;max-width:1100px;margin:0 auto}
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px}
-.section h2{margin:0}
+
+/* Light theme override when the user prefers light */
+@media (prefers-color-scheme: light){
+  :root{
+    --bg: #f6f8fc;
+    --ink: #0b1220;
+    --muted: #46556e;
+    --surface: #ffffff;
+    --border: #e6eaf2;
+  }
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation: none !important; transition: none !important; scroll-behavior: auto !important;}
+}
+
+/* =========================
+   2) BASE / RESET
+   ========================= */
+*{box-sizing: border-box}
+html, body{height:100%}
+html{color-scheme: light dark;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--font-sans); font-size:var(--fs-0); line-height:1.55;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+img, svg{max-width:100%; display:block}
+
+/* Accessible focus */
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:6px}
+
+/* Typography defaults */
+h1,h2,h3{line-height:1.2; margin:0 0 .5em}
+h1{font-size:var(--fs-3)}
+h2{font-size:var(--fs-2)}
+h3{font-size:var(--fs-1)}
+p{margin:.5em 0 1em; color:var(--ink)}
+small, .muted{color:var(--muted)}
+
+/* Links */
+a{color:var(--accent); text-decoration: none}
+a:hover{text-decoration: underline}
+
+/* Code */
+code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+pre{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid var(--border); padding:16px; border-radius:12px; overflow:auto}
+
+/* =========================
+   3) LAYOUT PRIMITIVES
+   ========================= */
+main{max-width:var(--max); margin-inline:auto; padding:24px}
+.grid{display:grid; gap:var(--gap)}
+.grid.cols-2{grid-template-columns: repeat(2, minmax(0,1fr))}
+.grid.cols-3{grid-template-columns: repeat(3, minmax(0,1fr))}
+.stack > * + *{margin-top: var(--gap)}
+.cluster{display:flex; flex-wrap:wrap; gap: var(--gap)}
+.center{display:grid; place-items:center}
+
+/* Responsive fallbacks */
+@media (max-width: 720px){
+  .grid.cols-2, .grid.cols-3{grid-template-columns: 1fr}
+}
+
+/* =========================
+   4) NAVIGATION / HEADER
+   ========================= */
+header{
+  position:sticky; top:0; z-index:50; backdrop-filter: blur(8px);
+  background: linear-gradient(180deg, rgba(15,23,42,.8), rgba(15,23,42,.6));
+  border-bottom:1px solid var(--border);
+}
+nav{max-width:var(--max); margin:auto; padding:12px 24px; display:flex; gap:14px; align-items:center}
+nav a{color:var(--ink); padding:8px 10px; border-radius:10px}
+nav a[aria-current="page"]{
+  font-weight:600; text-decoration:underline; text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+/* =========================
+   5) SURFACES + CARDS
+   ========================= */
+.card{
+  background: var(--surface);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.hero{
+  padding: 32px 24px; border-radius: calc(var(--radius) + 6px);
+  background:
+    radial-gradient(60vmax 60vmax at 10% -10%, color-mix(in hsl, var(--accent) 20%, transparent), transparent),
+    radial-gradient(60vmax 60vmax at 110% 10%, color-mix(in hsl, var(--accent-2) 20%, transparent), transparent),
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border:1px solid var(--border);
+}
+
+/* =========================
+   6) BUTTONS / TAGS / INPUTS
+   ========================= */
+.btn{
+  --btn-bg: transparent; --btn-ink: var(--ink);
+  display:inline-block; padding:.6rem .9rem; border-radius:12px; font-weight:600;
+  border:1px solid currentColor; color: var(--btn-ink); background: var(--btn-bg);
+  transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.btn:hover{transform: translateY(-1px)}
+.btn.primary{--btn-bg: var(--accent); --btn-ink: #0b1220; border-color: transparent}
+.btn.ghost{opacity:.9}
+
+.pill{display:inline-block; padding:.25rem .6rem; border:1px solid var(--border); border-radius:999px; font-size:.85em; color:var(--muted)}
+
+input[type="search"], input[type="text"], select{
+  width:100%; padding:.6rem .75rem; border-radius:10px; border:1px solid var(--border); background:var(--surface); color:var(--ink);
+}
+
+/* =========================
+   7) UTILITIES
+   ========================= */
+.hidden{display:none !important}
 .muted{color:var(--muted)}
-.small{font-size:.95rem}
-.card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0)),var(--surface);border:1px solid var(--outline);border-radius:var(--radius);padding:18px 16px;box-shadow:var(--shadow-sm)}
-.highlight{outline:1px solid rgba(112,178,255,.25)}
-.lift{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
-.lift:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(112,178,255,.35)}
-.grid{display:grid;gap:16px}
-.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid.three,.project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:1000px){.grid.three,.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:680px){.grid.two,.grid.three,.project-grid{grid-template-columns:1fr}.nav-toggle{display:inline-block}.site-nav{display:none;position:absolute;right:16px;top:52px;flex-direction:column;background:var(--surface);padding:8px;border:1px solid var(--outline);border-radius:10px}.site-nav.open{display:flex}}
-.btn{display:inline-block;padding:10px 14px;border:1px solid var(--outline);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
-.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:rgba(112,178,255,.35)}
-.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));border:none;color:#0b0e14;font-weight:700}
-.inline-icons{display:flex;gap:14px;padding:0;margin:10px 0 0;list-style:none}
-.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none}
-.chips li,.chip{background:rgba(255,255,255,.03);border:1px solid var(--outline);border-radius:999px;padding:6px 12px;font-size:.95rem;color:var(--text)}
-.filters{display:flex;gap:8px;margin:8px 0 20px}
-.chip[aria-pressed="true"]{outline:2px solid rgba(112,178,255,.5)}
-.list-docs,.list-links{padding-left:20px}
-.list-docs li{margin:10px 0}
-.doc{display:flex;flex-direction:column;gap:2px}
-.meta{color:var(--muted);font-size:.92rem}
-.links{display:flex;gap:12px;margin-top:10px}
-.timeline{list-style:none;padding:0;margin:0}
-.timeline li{padding:12px 0;border-bottom:1px dashed var(--outline)}
-.timeline time{font-variant-numeric:tabular-nums;color:var(--muted);margin-right:8px}
-.site-footer{border-top:1px solid var(--outline);background:rgba(10,12,18,.6);backdrop-filter:blur(8px);text-align:center;padding:22px 16px;margin-top:40px}
-.reveal{opacity:0;transform:translateY(14px);will-change:opacity,transform}
-.reveal-in{animation:fadeUp .6s ease forwards}
-@keyframes fadeUp{to{opacity:1;transform:none}}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.lift,.reveal,.bg{transition:none;animation:none}}
+.mt-0{margin-top:0}
+.mt-1{margin-top:.25rem}
+.mt-2{margin-top:.5rem}
+.mt-3{margin-top:1rem}
+.mr-1{margin-right:.25rem}
+.mb-0{margin-bottom:0}
+.center-text{text-align:center}
+.right{text-align:right}
+.w-100{width:100%}
+
+/* Screen-reader only content */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* =========================
+   8) PAGE-SPECIFIC SUGGESTIONS
+   ========================= */
+/* Home hero unit */
+.home-hero h1{margin-bottom:.2em}
+.home-hero p{color:var(--muted); max-width:60ch}
+
+/* CV page: PDF object area */
+.cv .embed{height: min(80vh, 900px); width:100%; border:1px solid var(--border); border-radius:12px; overflow:hidden}
+
+/* Tutoring list */
+.tutor-list{grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))}
+.tutor-item.card{display:flex; align-items:center; justify-content:space-between; gap:12px}
+
+/* Updates timeline */
+.update.card h3{margin:0 0 .3rem}
+.update .meta{color:var(--muted); font-size:.95em}
+
+/* =========================
+   9) BACKGROUND LATTICE (subtle identity)
+   ========================= */
+/* Applies to body. Edit alphas to strengthen/soften. */
+body{
+  background-image:
+    radial-gradient(60vmax 60vmax at 10% -10%, color-mix(in hsl, var(--accent) 18%, transparent), transparent),
+    radial-gradient(60vmax 60vmax at 110% 10%, color-mix(in hsl, var(--accent-2) 18%, transparent), transparent),
+    conic-gradient(from 90deg at 50% 50%, #ffffff08 0 25%, transparent 0 100%);
+  background-size: auto, auto, 24px 24px;
+  background-blend-mode: screen, screen, normal;
+}
+
+/* =========================
+   10) PRINT STYLES (CV etc.)
+   ========================= */
+@media print{
+  header, nav, .btn, .no-print{display:none !important}
+  body{background:#fff; color:#000}
+  .card, .hero{box-shadow:none; border:1px solid #ccc}
+}
+
+/* =========================
+   HOW TO MODIFY QUICKLY
+   - Change brand colors: tweak --accent and --accent-2.
+   - Sharper corners: reduce --radius.
+   - Denser layout: reduce --gap and base padding in main.
+   - Softer background: reduce alpha in the background-image gradients.
+   - Larger body text: bump --fs-0.
+   - Remove card shadows: set --shadow: none.
+   ========================= */
