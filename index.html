@@ -8,7 +8,23 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
+  <!-- Decorative background -->
+  <svg class="bg" viewBox="0 0 1200 800" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="g1" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="var(--grad-a)" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="var(--grad-b)" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="g2" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="var(--grad-c)" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="var(--grad-d)" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle class="blob blob-a" cx="200" cy="200" r="300" fill="url(#g1)"/>
+    <circle class="blob blob-b" cx="1000" cy="600" r="280" fill="url(#g2)"/>
+  </svg>
+
+  <header class="site-header" id="top">
     <a class="brand" href="#top">Stelios</a>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     <nav class="site-nav" id="site-nav">
@@ -19,84 +35,109 @@
     </nav>
   </header>
 
-  <!-- SHOWCASE: CV + updates -->
-  <main id="top">
-    <section id="showcase" class="section">
-      <h1>Showcase</h1>
-      <p class="lede">Electrical and Computer Engineering student at NTUA. Interests: theoretical CS, quantum computing, algorithms, PL.</p>
+  <!-- HERO -->
+  <section class="hero reveal" aria-label="Intro">
+    <div class="hero-inner">
+      <h1><span class="grad-text">Engineer</span> • Tutor • Builder</h1>
+      <p>Electrical & Computer Engineering student. Algorithms, PL, and quantum optimization.</p>
+      <div class="cta">
+        <a class="btn primary" href="#showcase">View profile</a>
+        <a class="btn" href="#projects">See projects</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- SHOWCASE -->
+    <section id="showcase" class="section reveal">
+      <header class="section-head">
+        <h2>Showcase</h2>
+        <p class="muted">CV and recent updates.</p>
+      </header>
 
       <div class="grid two">
-        <article class="card">
-          <h2>CV</h2>
-          <p>Add a PDF to <code>/assets/cv.pdf</code> and link it here.</p>
-          <p><a class="btn" href="assets/cv.pdf">Download CV</a></p>
+        <article class="card lift">
+          <h3>CV</h3>
+          <p>PDF resume with coursework, projects, and tutoring experience.</p>
+          <a class="btn primary" href="assets/cv.pdf">Download CV</a>
           <ul class="inline-icons">
-            <li><a href="mailto:your_email@example.com" rel="me">Email</a></li>
-            <li><a href="https://github.com/stelpre" rel="me">GitHub</a></li>
-            <li><a href="#" rel="me">LinkedIn</a></li>
+            <li><a href="mailto:your_email@example.com">Email</a></li>
+            <li><a href="https://github.com/stelpre">GitHub</a></li>
+            <li><a href="#">LinkedIn</a></li>
           </ul>
         </article>
 
-        <article class="card">
-          <h2>Updates</h2>
-          <ul class="timeline" aria-live="polite">
-            <!-- Add newest first -->
-            <li><time datetime="2025-09-01">Sep 1, 2025</time> Started tutoring Algorithms I.</li>
-            <li><time datetime="2025-07-15">Jul 15, 2025</time> Built a SAT solver in C++.</li>
-            <li><time datetime="2025-05-20">May 20, 2025</time> Presented term project on QAOA.</li>
+        <article class="card lift">
+          <h3>Updates</h3>
+          <ul class="timeline">
+            <li><time datetime="2025-09-01">Sep 1, 2025</time> Tutoring Algorithms I.</li>
+            <li><time datetime="2025-07-15">Jul 15, 2025</time> Released CDCL SAT solver.</li>
+            <li><time datetime="2025-05-20">May 20, 2025</time> Presented QAOA project.</li>
           </ul>
         </article>
       </div>
     </section>
 
-    <!-- TEACHING: assignments + materials -->
-    <section id="teaching" class="section">
-      <h1>Teaching</h1>
-      <p>Assignments, notes, and helper code for tutoring sessions.</p>
+    <!-- TEACHING -->
+    <section id="teaching" class="section reveal">
+      <header class="section-head">
+        <h2>Teaching</h2>
+        <p class="muted">Assignments and reference sheets.</p>
+      </header>
 
-      <div class="card">
-        <h2>Current courses</h2>
-        <ul class="chips">
-          <li>Algorithms I</li>
-          <li>Discrete Mathematics</li>
-          <li>Programming in C++</li>
-        </ul>
-      </div>
-
-      <div class="grid two">
-        <article class="card">
-          <h2>Assignments</h2>
+      <div class="grid three">
+        <article class="card lift">
+          <h3>Assignments</h3>
           <ol class="list-docs">
-            <!-- Replace with real files under /teaching/ -->
             <li>
-              <a href="teaching/algorithms1-hw1.pdf">HW1: Asymptotics and Recurrences</a>
-              <span class="meta">due Oct 10, 2025</span>
+              <a class="doc" href="teaching/algorithms1-hw1.pdf">
+                <span>HW1: Asymptotics and Recurrences</span>
+                <span class="meta">due Oct 10, 2025</span>
+              </a>
             </li>
             <li>
-              <a href="teaching/discrete-sets-proofs.pdf">Problem set: Sets and Induction</a>
-              <span class="meta">solutions Oct 17, 2025</span>
+              <a class="doc" href="teaching/discrete-sets-proofs.pdf">
+                <span>Problem set: Sets and Induction</span>
+                <span class="meta">solutions Oct 17, 2025</span>
+              </a>
             </li>
             <li>
-              <a href="teaching/cpp-lab1.zip">C++ Lab 1 Starter</a>
-              <span class="meta">starter kit</span>
+              <a class="doc" href="teaching/cpp-lab1.zip">
+                <span>C++ Lab 1 Starter</span>
+                <span class="meta">starter kit</span>
+              </a>
             </li>
           </ol>
         </article>
 
-        <article class="card">
-          <h2>Useful material</h2>
+        <article class="card lift">
+          <h3>Useful material</h3>
           <ul class="list-links">
             <li><a href="teaching/cheatsheet-asymptotics.pdf">Asymptotics cheatsheet</a></li>
             <li><a href="teaching/proofs-mini-guide.pdf">Proofs mini-guide</a></li>
             <li><a href="teaching/cpp-style-guide.pdf">C++ style guide</a></li>
           </ul>
         </article>
+
+        <article class="card lift highlight">
+          <h3>Current courses</h3>
+          <ul class="chips">
+            <li>Algorithms I</li>
+            <li>Discrete Math</li>
+            <li>C++ Programming</li>
+          </ul>
+          <p class="muted small">Materials update weekly.</p>
+        </article>
       </div>
     </section>
 
-    <!-- PROJECTS: links to repos and demos -->
-    <section id="projects" class="section">
-      <h1>Projects</h1>
+    <!-- PROJECTS -->
+    <section id="projects" class="section reveal">
+      <header class="section-head">
+        <h2>Projects</h2>
+        <p class="muted">Filter by area.</p>
+      </header>
+
       <div class="filters" role="group" aria-label="Filter projects">
         <button class="chip" data-filter="all" aria-pressed="true">All</button>
         <button class="chip" data-filter="theory">Theory</button>
@@ -105,40 +146,42 @@
         <button class="chip" data-filter="python">Python</button>
       </div>
 
-      <div class="grid three project-grid" id="project-grid">
-        <!-- Duplicate a card per project -->
-        <article class="card project" data-tags="cpp systems">
-          <h2>SAT Solver</h2>
-          <p>CDCL solver with VSIDS and clause learning.</p>
-          <p class="links">
+      <div class="project-grid">
+        <article class="project card lift" data-tags="cpp systems">
+          <h3>SAT Solver</h3>
+          <p>CDCL with VSIDS and clause learning.</p>
+          <div class="links">
             <a href="https://github.com/stelpre/sat-solver">Repo</a>
             <a href="#">Write-up</a>
-          </p>
+          </div>
         </article>
 
-        <article class="card project" data-tags="python theory">
-          <h2>QAOA Playground</h2>
-          <p>Experiments with Max-Cut on small graphs.</p>
-          <p class="links">
+        <article class="project card lift" data-tags="python theory">
+          <h3>QAOA Playground</h3>
+          <p>Max-Cut experiments on small graphs.</p>
+          <div class="links">
             <a href="https://github.com/stelpre/qaoa-playground">Repo</a>
             <a href="#">Notebook</a>
-          </p>
+          </div>
         </article>
 
-        <article class="card project" data-tags="cpp systems">
-          <h2>Tiny Compiler</h2>
-          <p>Lexing, parsing, and bytecode VM for a toy language.</p>
-          <p class="links">
+        <article class="project card lift" data-tags="cpp systems">
+          <h3>Tiny Compiler</h3>
+          <p>Lexer, parser, and bytecode VM.</p>
+          <div class="links">
             <a href="https://github.com/stelpre/tiny-compiler">Repo</a>
             <a href="#">Demo</a>
-          </p>
+          </div>
         </article>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="section">
-      <h1>Contact</h1>
+    <section id="contact" class="section reveal">
+      <header class="section-head">
+        <h2>Contact</h2>
+        <p class="muted">Get in touch.</p>
+      </header>
       <ul class="list-links">
         <li>Email: <a href="mailto:your_email@example.com">your_email@example.com</a></li>
         <li>GitHub: <a href="https://github.com/stelpre">github.com/stelpre</a></li>
@@ -152,7 +195,7 @@
   </footer>
 
   <script>
-    // Mobile nav toggle
+    // Mobile nav
     const btn = document.querySelector('.nav-toggle');
     const nav = document.getElementById('site-nav');
     btn.addEventListener('click', () => {
@@ -160,6 +203,28 @@
       btn.setAttribute('aria-expanded', String(!open));
       nav.classList.toggle('open');
     });
+
+    // Smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        const el=document.querySelector(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('reveal-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.15});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
     // Project tag filtering
     const chips = document.querySelectorAll('.filters .chip');
@@ -176,6 +241,21 @@
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Float background blobs
+    const blobs = document.querySelectorAll('.blob');
+    let t=0;
+    function animate(){
+      t+=0.01;
+      blobs.forEach((b,i)=>{
+        const dx=Math.sin(t + i)*6;
+        const dy=Math.cos(t*0.8 + i)*6;
+        b.style.transform=`translate(${dx}px,${dy}px)`;
+      });
+      requestAnimationFrame(animate);
+    }
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!prefersReduced) requestAnimationFrame(animate);
   </script>
 </body>
 </html>
