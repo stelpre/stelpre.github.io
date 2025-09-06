@@ -112,3 +112,24 @@ a:hover{text-decoration:underline}
   html{scroll-behavior:auto}
   .lift,.bg{transition:none;animation:none}
 }
+
+/* ===== Fullscreen layout ===== */
+body, html {
+  height: 100%;
+}
+
+main, .container, .section {
+  min-height: 100vh;              /* always fill screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;        /* vertical centering */
+  align-items: center;            /* horizontal centering */
+  padding: 32px;                  /* spacing from edges */
+  box-sizing: border-box;
+}
+
+/* For text-heavy pages (CV, Tutoring, Updates) */
+main > * {
+  max-width: 900px;               /* keep content readable */
+  text-align: center;             /* center text by default */
+}
