@@ -1,21 +1,17 @@
-/*===============================
-  THEME VARIABLES
-  Edit these to quickly restyle.
-===============================*/
+/* ===============================
+   THEME — tailored to Stelios
+   =============================== */
 :root{
-  --bg:#07090d;
-  --surface:#0e1117;
-  --text:#e7eaf0;
-  --muted:#98a2b3;
-  --outline:#1f2632;
-  --accent:#70b2ff;
-  --accent-2:#a78bfa;
-  --accent-3:#22d3ee;
+  --bg:#06070b;           /* deep navy */
+  --surface:#0c0f17;      /* panel */
+  --text:#e8ebf2;         /* primary text */
+  --muted:#99a2b3;        /* secondary text */
+  --outline:#202637;      /* borders */
 
-  --grad-a:#3b82f6;
-  --grad-b:#111827;
-  --grad-c:#a78bfa;
-  --grad-d:#0b1020;
+  /* Quantum triad */
+  --accent:#54c5ff;       /* cyan */
+  --accent-2:#a78bfa;     /* quantum purple */
+  --accent-3:#1de9d1;     /* teal */
 
   --radius:14px;
   --shadow-lg: 0 10px 30px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.03) inset;
@@ -27,30 +23,25 @@
 html,body{margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: 'Manrope', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background:
-    radial-gradient(1200px 800px at 10% 10%, #0b1220 0%, #07090d 60%),
-    radial-gradient(900px 900px at 90% 80%, #0a0f1a 0%, #07090d 70%);
+    radial-gradient(1200px 800px at 10% 10%, #0a1120 0%, var(--bg) 60%),
+    radial-gradient(900px 900px at 90% 80%, #0a0f19 0%, var(--bg) 70%);
   color:var(--text);
   line-height:1.6;
 }
 
-/* Background art: softly blurred color blobs */
-.bg{
-  position: fixed; inset: 0; width: 100%; height: 100%;
-  pointer-events:none; z-index:-1; opacity:.6;
-  filter: blur(30px) saturate(120%);
-}
-.blob{transform:translateZ(0); will-change: transform}
+/* Background canvas size + tuning */
+.bg{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; filter:saturate(115%) blur(0.2px); }
 
-/* Header (sticky) */
+/* Header */
 .site-header{
   position: sticky; top:0; z-index:10;
   display:flex; align-items:center; justify-content:space-between;
   padding:14px 16px; background: rgba(8,10,15,.6); backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--outline);
 }
-.brand{font-weight:700; letter-spacing:.2px}
+.brand{font-family:'Comfortaa', system-ui; font-weight:700; letter-spacing:.3px}
 .site-nav{display:flex; gap:16px}
 .site-nav a{padding:10px 8px; border-radius:8px; position:relative}
 .site-nav a::after{
@@ -61,28 +52,18 @@ body{
 .site-nav a:hover::after{transform: scaleX(1)}
 .nav-toggle{display:none; font:inherit; background:none; border:1px solid var(--outline); color:var(--text); padding:6px 10px; border-radius:8px}
 
-/* HERO: big centered title */
+/* HERO */
 .hero{min-height:58vh; display:grid; place-items:center; text-align:center; padding:56px 16px}
 .hero-inner{max-width:1000px}
 .page-title{
-  /* Extra large title as requested */
-  font-size: clamp(2.4rem, 6vw, 5rem);
-  font-weight: 900;
-  letter-spacing: .02em;
-  line-height: 1.05;
-  margin: 0 0 8px 0;
-  /* Gradient ink for subtle premium feel */
+  font-family:'Comfortaa', system-ui; font-size: clamp(2.6rem, 6.2vw, 5.2rem);
+  font-weight: 700; letter-spacing: .02em; line-height: 1.05; margin: 0 0 8px 0;
   background: linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
   -webkit-background-clip:text; background-clip:text; color:transparent;
-  text-shadow: 0 0 0 rgba(0,0,0,0); /* keeps edges crisp */
 }
 .tight-break{display:inline}
 @media (max-width:520px){ .tight-break{display:block} }
-.subtitle{
-  font-size: clamp(1.05rem, 2.6vw, 1.4rem);
-  color: var(--muted);
-  margin: 0 0 12px 0;
-}
+.subtitle{ font-size: clamp(1.05rem, 2.6vw, 1.4rem); color: var(--muted); margin: 0 0 12px 0; }
 .hero .cta{display:flex; gap:12px; justify-content:center; margin-top:16px}
 
 /* Sections */
@@ -126,16 +107,10 @@ body{
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 .btn:hover{transform:translateY(-2px); box-shadow: var(--shadow-sm); border-color: rgba(112,178,255,.35)}
-.btn.primary{
-  background: linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
-  border: none; color:#0b0e14; font-weight:600;
-}
+.btn.primary{ background: linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3)); border: none; color:#0b0e14; font-weight:700; }
 .inline-icons{display:flex; gap:14px; padding:0; margin:10px 0 0; list-style:none}
 .chips{display:flex; flex-wrap:wrap; gap:8px; padding:0; list-style:none}
-.chips li, .chip{
-  background:rgba(255,255,255,.03); border:1px solid var(--outline); border-radius:999px;
-  padding:6px 12px; font-size:.95rem; color:var(--text)
-}
+.chips li, .chip{ background:rgba(255,255,255,.03); border:1px solid var(--outline); border-radius:999px; padding:6px 12px; font-size:.95rem; color:var(--text) }
 .filters{display:flex; gap:8px; margin:8px 0 20px}
 .chip[aria-pressed="true"]{outline:2px solid rgba(112,178,255,.5)}
 
@@ -152,21 +127,12 @@ body{
 .timeline time{font-variant-numeric: tabular-nums; color:var(--muted); margin-right:8px}
 
 /* Footer */
-.site-footer{
-  border-top:1px solid var(--outline);
-  background: rgba(10,12,18,.6); backdrop-filter: blur(8px);
-  text-align:center; padding:22px 16px; margin-top:40px;
-}
+.site-footer{ border-top:1px solid var(--outline); background: rgba(10,12,18,.6); backdrop-filter: blur(8px); text-align:center; padding:22px 16px; margin-top:40px; }
 
-/* Reveal animation (disabled by prefers-reduced-motion) */
+/* Reveal */
 .reveal{opacity:0; transform: translateY(14px); will-change: opacity, transform}
 .reveal-in{animation: fadeUp .6s ease forwards}
-@keyframes fadeUp{
-  to{opacity:1; transform:none}
-}
+@keyframes fadeUp{ to{opacity:1; transform:none} }
 
-/* Accessibility: respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
-  .lift, .reveal, .bg, .blob{transition:none; animation:none}
-}
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} .lift, .reveal, .bg{transition:none; animation:none} }
