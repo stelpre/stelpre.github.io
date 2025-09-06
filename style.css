@@ -1,29 +1,34 @@
-/* ===============================
-   THEME — tailored to Stelios
-   =============================== */
+/* =============================================================
+   THEME — Tailored tokens for Stelios
+   Edit values under :root to re-skin the entire site.
+   ============================================================= */
 :root{
-  --bg:#06070b;           /* deep navy */
-  --surface:#0c0f17;      /* panel */
+  /* Core surfaces and text */
+  --bg:#06070b;           /* page background */
+  --surface:#0c0f17;      /* card and panel background */
   --text:#e8ebf2;         /* primary text */
   --muted:#99a2b3;        /* secondary text */
-  --outline:#202637;      /* borders */
+  --outline:#202637;      /* borders and hairlines */
 
-  /* Quantum triad */
-  --accent:#54c5ff;       /* cyan */
-  --accent-2:#a78bfa;     /* quantum purple */
-  --accent-3:#1de9d1;     /* teal */
+  /* Accent triad: cyan, purple, teal (quantum vibe) */
+  --accent:#54c5ff;
+  --accent-2:#a78bfa;
+  --accent-3:#1de9d1;
 
+  /* Radii and shadows */
   --radius:14px;
   --shadow-lg: 0 10px 30px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.03) inset;
   --shadow-sm: 0 6px 20px rgba(0,0,0,.25);
 }
 
-/* Base reset */
+/* ========== Base Reset and Body ========== */
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth} /* disabled by prefers-reduced-motion in media query */
 body{
+  /* Font stack: Manrope primary, falls back to system UI sans */
   font-family: 'Manrope', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  /* Subtle radial washes behind the canvas lines */
   background:
     radial-gradient(1200px 800px at 10% 10%, #0a1120 0%, var(--bg) 60%),
     radial-gradient(900px 900px at 90% 80%, #0a0f19 0%, var(--bg) 70%);
@@ -31,10 +36,10 @@ body{
   line-height:1.6;
 }
 
-/* Background canvas size + tuning */
+/* The canvas covers the viewport and sits behind content */
 .bg{ position:fixed; inset:0; width:100%; height:100%; z-index:-1; filter:saturate(115%) blur(0.2px); }
 
-/* Header */
+/* ========== Header ========== */
 .site-header{
   position: sticky; top:0; z-index:10;
   display:flex; align-items:center; justify-content:space-between;
@@ -45,6 +50,7 @@ body{
 .site-nav{display:flex; gap:16px}
 .site-nav a{padding:10px 8px; border-radius:8px; position:relative}
 .site-nav a::after{
+  /* Animated underline on hover */
   content:""; position:absolute; left:8px; right:8px; bottom:6px; height:2px;
   background: linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
   transform: scaleX(0); transform-origin:left; transition: transform .25s ease;
@@ -52,12 +58,13 @@ body{
 .site-nav a:hover::after{transform: scaleX(1)}
 .nav-toggle{display:none; font:inherit; background:none; border:1px solid var(--outline); color:var(--text); padding:6px 10px; border-radius:8px}
 
-/* HERO */
+/* ========== Hero ========== */
 .hero{min-height:58vh; display:grid; place-items:center; text-align:center; padding:56px 16px}
 .hero-inner{max-width:1000px}
 .page-title{
   font-family:'Comfortaa', system-ui; font-size: clamp(2.6rem, 6.2vw, 5.2rem);
   font-weight: 700; letter-spacing: .02em; line-height: 1.05; margin: 0 0 8px 0;
+  /* Gradient ink */
   background: linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
@@ -66,14 +73,13 @@ body{
 .subtitle{ font-size: clamp(1.05rem, 2.6vw, 1.4rem); color: var(--muted); margin: 0 0 12px 0; }
 .hero .cta{display:flex; gap:12px; justify-content:center; margin-top:16px}
 
-/* Sections */
+/* ========== Sections and Cards ========== */
 .section{padding:64px 16px; max-width:1100px; margin:0 auto}
 .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:18px}
 .section h2{margin:0}
 .muted{color:var(--muted)}
 .small{font-size:.95rem}
 
-/* Cards */
 .card{
   background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0)) , var(--surface);
   border: 1px solid var(--outline);
@@ -85,7 +91,7 @@ body{
 .lift{transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease}
 .lift:hover{transform:translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(112,178,255,.35)}
 
-/* Grids */
+/* ========== Grids ========== */
 .grid{display:grid; gap:16px}
 .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .grid.three,.project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -100,7 +106,7 @@ body{
   .site-nav.open{display:flex}
 }
 
-/* Buttons and chips */
+/* ========== Buttons and Chips ========== */
 .btn{
   display:inline-block; padding:10px 14px; border:1px solid var(--outline);
   border-radius:10px; background:rgba(255,255,255,.02); color:var(--text); text-decoration:none;
@@ -109,30 +115,32 @@ body{
 .btn:hover{transform:translateY(-2px); box-shadow: var(--shadow-sm); border-color: rgba(112,178,255,.35)}
 .btn.primary{ background: linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3)); border: none; color:#0b0e14; font-weight:700; }
 .inline-icons{display:flex; gap:14px; padding:0; margin:10px 0 0; list-style:none}
+
 .chips{display:flex; flex-wrap:wrap; gap:8px; padding:0; list-style:none}
 .chips li, .chip{ background:rgba(255,255,255,.03); border:1px solid var(--outline); border-radius:999px; padding:6px 12px; font-size:.95rem; color:var(--text) }
 .filters{display:flex; gap:8px; margin:8px 0 20px}
 .chip[aria-pressed="true"]{outline:2px solid rgba(112,178,255,.5)}
 
-/* Lists */
+/* ========== Lists and Timeline ========== */
 .list-docs, .list-links{padding-left:20px}
 .list-docs li{margin:10px 0}
 .doc{display:flex; flex-direction:column; gap:2px}
 .meta{color:var(--muted); font-size:.92rem}
 .links{display:flex; gap:12px; margin-top:10px}
-
-/* Timeline */
 .timeline{list-style:none; padding:0; margin:0}
 .timeline li{padding:12px 0; border-bottom:1px dashed var(--outline)}
 .timeline time{font-variant-numeric: tabular-nums; color:var(--muted); margin-right:8px}
 
-/* Footer */
+/* ========== Footer ========== */
 .site-footer{ border-top:1px solid var(--outline); background: rgba(10,12,18,.6); backdrop-filter: blur(8px); text-align:center; padding:22px 16px; margin-top:40px; }
 
-/* Reveal */
+/* ========== Reveal animation ========== */
 .reveal{opacity:0; transform: translateY(14px); will-change: opacity, transform}
 .reveal-in{animation: fadeUp .6s ease forwards}
 @keyframes fadeUp{ to{opacity:1; transform:none} }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} .lift, .reveal, .bg{transition:none; animation:none} }
+/* ========== Accessibility: reduced motion ========== */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .lift, .reveal, .bg{transition:none; animation:none}
+}
