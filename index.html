@@ -1,39 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stylianos Prentakis</title>
-  <link rel="stylesheet" href="style.css">
+<!-- MAIN: Entry page linking to CV, Tutoring Material, and Project Updates -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PRENTAKIS STELIOS — Main</title>
+<meta name="description" content="Main hub for Stylianos (Stelios) Prentakis — NTUA ECE. Links to CV, Tutoring Material, and Project Updates." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
-    <!-- Title + profile image -->
-    <div class="title-container">
-      <h1>Stylianos Prentakis</h1>
-      <img src="assets/profile.png" alt="Profile picture" class="profile-pic">
-    </div>
+<canvas id="bgfx" class="bg" aria-hidden="true"></canvas>
 
-    <!-- Intro text -->
-    <p class="intro-text">
-      Welcome to my personal website. Here you’ll find my academic background, teaching material, and updates on projects I am working on.
-    </p>
 
-    <!-- Navigation cards -->
-    <div class="cards">
-      <a href="cv.html" class="card">
-        <h2>Curriculum Vitae</h2>
-        <p>Academic record, honors, and experience</p>
-      </a>
-      <a href="tutoring.html" class="card">
-        <h2>Tutoring Material</h2>
-        <p>Notes and exercises for students</p>
-      </a>
-      <a href="updates.html" class="card">
-        <h2>Project Updates</h2>
-        <p>Research and side projects I am working on</p>
-      </a>
-    </div>
-  </main>
-</body>
+<header class="site-header">
+<a class="brand" href="index.html">Stelios</a>
+<button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+<nav class="site-nav" id="site-nav">
+<a href="index.html" aria-current="page">Main</a>
+<a href="cv.html">CV</a>
+<a href="tutoring.html">Tutoring Material</a>
+<a href="updates.html">Project Updates</a>
+</nav>
+</header>
+
+
+<section class="hero reveal" aria-label="Intro">
+<div class="hero-inner">
+<h1 class="page-title">PRENTAKIS <span class="tight-break"></span> STELIOS</h1>
+<p class="subtitle">NTUA ECE • Quantum algorithms &amp; complexity • C++</p>
+<div class="cta">
+<a class="btn primary" href="cv.html">See CV</a>
+<a class="btn" href="tutoring.html">Tutoring Material</a>
+<a class="btn" href="updates.html">Project Updates</a>
+</div>
+</div>
+</section>
+
+
+<main>
+<section class="section reveal">
+<header class="section-head">
+<h2>Welcome</h2>
+<p class="muted">Choose a section.</p>
+</header>
+<div class="grid three">
+<article class="card lift">
+<h3>Curriculum Vitae</h3>
+<p>Coursework, projects, and contact details.</p>
+<div class="links"><a class="btn primary" href="cv.html">Open CV</a></div>
+</article>
+<article class="card lift">
+<h3>Tutoring Material</h3>
+<p>Assignments, cheat sheets, and resources.</p>
+<div class="links"><a class="btn primary" href="tutoring.html">Open Material</a></div>
+</article>
+<article class="card lift">
+<h3>Project Updates</h3>
+<p>Recent work and experiments.</p>
+<div class="links"><a class="btn primary" href="updates.html">Open Updates</a></div>
+</article>
+</div>
+</section>
+</main>
+
+
+<footer class="site-footer">
+<p>&copy; <span id="year"></span> Stelios Prentakis · <span class="muted">Exploring the limits of computation</span></p>
+</footer>
+
+
+<script>
+// Shared UI scripts (same block appears on every page). Extract to main.js if desired.
+const btn = document.querySelector('.nav-toggle');
+const nav = document.getElementById('site-nav');
+if(btn){ btn.addEventListener('click', () => { const open = btn.getAttribute('aria-expanded') === 'true'; btn.setAttribute('aria-expanded', String(!open)); nav.classList.toggle('open'); }); }
+
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('reveal-in'); observer.unobserve(entry.target); } }); }, {threshold: 0.15});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+
+// Footer year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+
+// Background FX canvas (quantum/graph lines)
+const canvas = document.getElementById('bgfx'); const ctx = canvas.getContext('2d'); let w,h,dpr; function resize(){ dpr=Math.min(window.devicePixelRatio||1,2); w=canvas.width=Math.floor(innerWidth*dpr); h=canvas.height=Math.floor(innerHeight*dpr); canvas.style.width=innerWidth+'px'; canvas.style.height=innerHeight+'px'; } resize(); addEventListener('resize',resize);
+const N=42, SPEED=0.08; let nodes = Array.from({length:N},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()*2-1)*SPEED*dpr,vy:(Math.random()*2-1)*SPEED*dpr}));
 </html>
