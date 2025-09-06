@@ -113,34 +113,106 @@ a:hover{text-decoration:underline}
   .lift,.bg{transition:none;animation:none}
 }
 
-/* ===== Light Mode (toggle by adding class="light" to <body>) ===== */
-body.light {
-  --bg:#f6f7fb;
-  --surface:#ffffff;
-  --text:#1c1d20;
-  --muted:#555e70;
-  --outline:#d2d6e0;
-  --accent:#0077cc;
-  --accent-2:#7b4dff;
-  --accent-3:#00c9a7;
-  --shadow-lg:0 10px 30px rgba(0,0,0,.08),0 1px 0 rgba(255,255,255,.8) inset;
-  --shadow-sm:0 6px 20px rgba(0,0,0,.05);
-  --radius:14px;
+/* ===== Home polish ===== */
+
+/* Full-bleed hero that centers content but leaves breathing room */
+.hero{
+  min-height: 92vh;
+  display: grid;
+  place-items: center;
+  padding: 48px 16px;
+}
+.hero-inner{
+  width: min(1100px, 92vw);
 }
 
-/* Respect system preference if user didn’t toggle manually */
-@media (prefers-color-scheme: light) {
-  body:not(.dark) {
-    --bg:#f6f7fb;
-    --surface:#ffffff;
-    --text:#1c1d20;
-    --muted:#555e70;
-    --outline:#d2d6e0;
-    --accent:#0077cc;
-    --accent-2:#7b4dff;
-    --accent-3:#00c9a7;
-    --shadow-lg:0 10px 30px rgba(0,0,0,.08),0 1px 0 rgba(255,255,255,.8) inset;
-    --shadow-sm:0 6px 20px rgba(0,0,0,.05);
+/* Title row: bigger name, aligned avatar, balanced gutter */
+.title-row{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 22px;
+  margin: 10px 0 8px;
+}
+.page-title{
+  margin: 0;
+  font-family: 'Comfortaa', system-ui;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 6.5vw, 5rem);
+  letter-spacing: .02em;
+  line-height: 1.03;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 8px 30px rgba(84,197,255,.12);
+}
+
+/* Avatar: subtle glow ring and crisp edge */
+.avatar{
+  width: 108px; height: 108px; border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--outline);
+  box-shadow:
+    0 0 0 6px rgba(167,139,250,.08),
+    0 10px 30px rgba(0,0,0,.35);
+  background: #222;
+}
+
+/* Subtitle width and rhythm */
+.subtitle{
+  margin: 12px 0 22px;
+  color: var(--muted);
+  font-size: clamp(1rem, 2.1vw, 1.15rem);
+  max-width: 800px;
+}
+
+/* Navigation cards row: equal height, consistent spacing */
+.quick-actions{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 10px;
+}
+@media (max-width: 980px){
+  .quick-actions{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px){
+  .title-row{ grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .quick-actions{ grid-template-columns: 1fr; }
+}
+
+/* Card refinements specifically for the home nav */
+.navcard{
+  padding: 18px 18px 16px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0)),
+    var(--surface);
+  border: 1px solid var(--outline);
+  box-shadow: var(--shadow-sm);
+}
+.navcard h2{
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+  color: var(--accent-2);
+}
+.navcard p{
+  margin: 0;
+  color: var(--muted);
+  font-size: .98rem;
+}
+
+/* Gentle hover motion, higher contrast focus */
+.navcard:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(112,178,255,.35);
+}
+.navcard:focus-visible{
+  outline: 2px solid rgba(112,178,255,.55);
+  outline-offset: 2px;
+  border-radius: 14px;
+}
+
     --radius:14px;
   }
 }
