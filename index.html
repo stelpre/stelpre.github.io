@@ -1,39 +1,27 @@
-<!DOCTYPE html>
+B<!DOCTYPE html>
 <html lang="en">
 <head>
   <!--
-    Site: PRENTAKIS STELIOS — personal portfolio
-    How to edit:
-    1) Replace links and text where marked "TODO".
-    2) Teaching files live under /teaching/. Just upload PDFs/ZIPs and update hrefs.
-    3) Projects: duplicate a <article class="project ..."> block and change title/links.
-    4) Colors and motion: tweak CSS variables at the top of style.css.
-    5) CV: place your PDF at /assets/autoCV.pdf (or change link below).
+    Site: PRENTAKIS STELIOS — personal portfolio (tailored aesthetic)
+    Notes:
+    - Fonts: Comfortaa (display), Manrope (text)
+    - Color system and motion in style.css
+    - Background art moved to <canvas id="bgfx"> for algorithmic/quantum vibe
   -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PRENTAKIS STELIOS</title>
-  <meta name="description" content="Portfolio, teaching material, and projects by Stylianos (Stelios) Prentakis." />
+  <meta name="description" content="Quantum algorithms, decision trees, and projects by Stylianos (Stelios) Prentakis — NTUA ECE." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Decorative animated background (pure SVG + CSS). Safe if motion reduced. -->
-  <svg class="bg" viewBox="0 0 1200 800" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <radialGradient id="g1" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="var(--grad-a)" stop-opacity="0.9"/>
-        <stop offset="100%" stop-color="var(--grad-b)" stop-opacity="0"/>
-      </radialGradient>
-      <radialGradient id="g2" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="var(--grad-c)" stop-opacity="0.9"/>
-        <stop offset="100%" stop-color="var(--grad-d)" stop-opacity="0"/>
-      </radialGradient>
-    </defs>
-    <circle class="blob blob-a" cx="200" cy="200" r="300" fill="url(#g1)"/>
-    <circle class="blob blob-b" cx="1000" cy="600" r="280" fill="url(#g2)"/>
-  </svg>
+  <!-- Algorithmic background on a canvas (respects reduced motion) -->
+  <canvas id="bgfx" class="bg" aria-hidden="true"></canvas>
 
-  <!-- Sticky site header (brand + nav). The big centered name is in the HERO below. -->
+  <!-- Sticky header -->
   <header class="site-header" id="top">
     <a class="brand" href="#top">Stelios</a>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
@@ -45,13 +33,11 @@
     </nav>
   </header>
 
-  <!-- HERO: Centered, extra-large title + subtitle per your request -->
+  <!-- HERO -->
   <section class="hero reveal" aria-label="Intro">
     <div class="hero-inner">
-      <!-- Page title: very prominent and centered -->
       <h1 class="page-title">PRENTAKIS <span class="tight-break"></span> STELIOS</h1>
-      <!-- Subtitle updated to your wording -->
-      <p class="subtitle">NTUA ECE Student • Maths &amp; Physics Tutor</p>
+      <p class="subtitle">NTUA ECE • Quantum algorithms &amp; complexity • C++</p>
       <div class="cta">
         <a class="btn primary" href="#showcase">View profile</a>
         <a class="btn" href="#projects">See projects</a>
@@ -60,7 +46,7 @@
   </section>
 
   <main>
-    <!-- SHOWCASE ========================================================== -->
+    <!-- SHOWCASE ======================================================== -->
     <section id="showcase" class="section reveal">
       <header class="section-head">
         <h2>Showcase</h2>
@@ -68,26 +54,18 @@
       </header>
 
       <div class="grid two">
-        <!-- CV card: link points to /assets/autoCV.pdf by default -->
         <article class="card lift">
           <h3>CV</h3>
-          <p>Resume with coursework, projects, and tutoring experience.</p>
-          <!-- Update this path if you rename or move your PDF -->
+          <p>Coursework, quantum projects, and tutoring experience.</p>
           <a class="btn primary" href="assets/autoCV.pdf">Download CV (PDF)</a>
-          <!-- Contact links reflect your CV details -->
           <ul class="inline-icons">
-            <!-- Email -->
             <li><a href="mailto:prentakistelios@gmail.com">Email</a></li>
-            <!-- GitHub: TODO replace if different handle -->
             <li><a href="https://github.com/stelpre">GitHub</a></li>
-            <!-- LinkedIn from your CV -->
             <li><a href="https://linkedin.com/in/stylianos-prentakis">LinkedIn</a></li>
           </ul>
-          <!-- Optional: location phone inline -->
           <p class="muted small">Athens, Greece · +30 698 185 5086</p>
         </article>
 
-        <!-- Updates list: newest first. Edit freely. -->
         <article class="card lift">
           <h3>Updates</h3>
           <ul class="timeline">
@@ -99,7 +77,7 @@
       </div>
     </section>
 
-    <!-- TEACHING ========================================================== -->
+    <!-- TEACHING ======================================================== -->
     <section id="teaching" class="section reveal">
       <header class="section-head">
         <h2>Teaching</h2>
@@ -107,7 +85,6 @@
       </header>
 
       <div class="grid three">
-        <!-- Assignments: upload files into /teaching/ and update links -->
         <article class="card lift">
           <h3>Assignments</h3>
           <ol class="list-docs">
@@ -132,7 +109,6 @@
           </ol>
         </article>
 
-        <!-- Reference materials -->
         <article class="card lift">
           <h3>Useful material</h3>
           <ul class="list-links">
@@ -142,7 +118,6 @@
           </ul>
         </article>
 
-        <!-- Courses overview: quick chips you can change anytime -->
         <article class="card lift highlight">
           <h3>Current courses</h3>
           <ul class="chips">
@@ -155,25 +130,23 @@
       </div>
     </section>
 
-    <!-- PROJECTS ========================================================== -->
+    <!-- PROJECTS ======================================================== -->
     <section id="projects" class="section reveal">
       <header class="section-head">
         <h2>Projects</h2>
         <p class="muted">Filter by area.</p>
       </header>
 
-      <!-- Filter chips: clicking toggles visible project cards -->
       <div class="filters" role="group" aria-label="Filter projects">
         <button class="chip" data-filter="all" aria-pressed="true">All</button>
-        <button class="chip" data-filter="theory">Theory</button>
-        <button class="chip" data-filter="systems">Systems</button>
+        <button class="chip" data-filter="quantum">Quantum</button>
+        <button class="chip" data-filter="complexity">Complexity</button>
         <button class="chip" data-filter="cpp">C++</button>
         <button class="chip" data-filter="python">Python</button>
       </div>
 
-      <!-- Project cards: duplicate for more projects -->
       <div class="project-grid">
-        <article class="project card lift" data-tags="cpp systems">
+        <article class="project card lift" data-tags="cpp complexity">
           <h3>SAT Solver</h3>
           <p>CDCL with VSIDS and clause learning.</p>
           <div class="links">
@@ -182,7 +155,7 @@
           </div>
         </article>
 
-        <article class="project card lift" data-tags="python theory">
+        <article class="project card lift" data-tags="python quantum">
           <h3>QAOA Playground</h3>
           <p>Max-Cut experiments on small graphs.</p>
           <div class="links">
@@ -191,7 +164,7 @@
           </div>
         </article>
 
-        <article class="project card lift" data-tags="cpp systems">
+        <article class="project card lift" data-tags="cpp systems complexity">
           <h3>Tiny Compiler</h3>
           <p>Lexer, parser, and bytecode VM.</p>
           <div class="links">
@@ -202,13 +175,12 @@
       </div>
     </section>
 
-    <!-- CONTACT =========================================================== -->
+    <!-- CONTACT ========================================================= -->
     <section id="contact" class="section reveal">
       <header class="section-head">
         <h2>Contact</h2>
         <p class="muted">Get in touch.</p>
       </header>
-      <!-- Contact info from your CV; edit here if anything changes -->
       <ul class="list-links">
         <li>Email: <a href="mailto:prentakistelios@gmail.com">prentakistelios@gmail.com</a></li>
         <li>Phone: <a href="tel:+306981855086">+30 698 185 5086</a></li>
@@ -218,13 +190,12 @@
     </section>
   </main>
 
-  <!-- Simple footer with current year -->
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Stelios Prentakis</p>
+    <p>&copy; <span id="year"></span> Stelios Prentakis · <span class="muted">Exploring the limits of computation</span></p>
   </footer>
 
   <script>
-    // ======= NAV: mobile menu toggle =======
+    // ======= HEADER NAV =======
     const btn = document.querySelector('.nav-toggle');
     const nav = document.getElementById('site-nav');
     btn.addEventListener('click', () => {
@@ -233,7 +204,7 @@
       nav.classList.toggle('open');
     });
 
-    // ======= Smooth anchor scroll (respects reduced motion in CSS) =======
+    // ======= Smooth anchor scroll =======
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         const id=a.getAttribute('href');
@@ -244,7 +215,7 @@
       });
     });
 
-    // ======= Reveal on scroll: fades sections in once =======
+    // ======= Reveal on scroll =======
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
@@ -271,20 +242,92 @@
     // ======= Footer year =======
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ======= Floating background blobs (disabled if prefers-reduced-motion) =======
-    const blobs = document.querySelectorAll('.blob');
-    let t=0;
-    function animate(){
-      t+=0.01;
-      blobs.forEach((b,i)=>{
-        const dx=Math.sin(t + i)*6;
-        const dy=Math.cos(t*0.8 + i)*6;
-        b.style.transform=`translate(${dx}px,${dy}px)`;
-      });
-      requestAnimationFrame(animate);
+    // ======= Background FX: quantum/graph lines =======
+    const canvas = document.getElementById('bgfx');
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = Math.floor(innerWidth * dpr);
+      h = canvas.height = Math.floor(innerHeight * dpr);
+      canvas.style.width = innerWidth + 'px';
+      canvas.style.height = innerHeight + 'px';
     }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Nodes form a sparse lattice; edges animate like quantum circuit traces.
+    const N = 42; // nice, not too dense
+    let nodes = [];
+
+    function resetNodes(){
+      nodes = Array.from({length:N}, ()=>({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        vx: (Math.random()*2-1)*0.08*dpr,
+        vy: (Math.random()*2-1)*0.08*dpr
+      }));
+    }
+    resetNodes();
+
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(!prefersReduced) requestAnimationFrame(animate);
+
+    function tick(){
+      ctx.clearRect(0,0,w,h);
+
+      // soft radial wash
+      const g = ctx.createRadialGradient(w*0.25,h*0.25,0,w*0.25,h*0.25,Math.max(w,h)*0.8);
+      g.addColorStop(0, 'rgba(40,70,120,0.25)');
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0,0,w,h);
+
+      // connect close nodes with gradient strokes
+      for(let i=0;i<N;i++){
+        const a = nodes[i];
+        for(let j=i+1;j<N;j++){
+          const b = nodes[j];
+          const dx=a.x-b.x, dy=a.y-b.y;
+          const dist = Math.hypot(dx,dy);
+          if(dist < 180*dpr){
+            const alpha = 1 - dist/(180*dpr);
+            ctx.strokeStyle = `rgba(84,197,255,${0.12*alpha})`; // cyan
+            ctx.lineWidth = 1*dpr;
+            ctx.beginPath();
+            // slight right-angle kink to hint "circuit"
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo((a.x+b.x)/2, a.y);
+            ctx.lineTo((a.x+b.x)/2, b.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // nodes
+      for(const n of nodes){
+        ctx.fillStyle = 'rgba(167,139,250,0.7)'; // purple
+        ctx.beginPath();
+        ctx.arc(n.x,n.y,1.6*dpr,0,Math.PI*2);
+        ctx.fill();
+
+        if(!prefersReduced){
+          n.x += n.vx; n.y += n.vy;
+          if(n.x<0||n.x>w) n.vx*=-1;
+          if(n.y<0||n.y>h) n.vy*=-1;
+        }
+      }
+
+      if(!prefersReduced) requestAnimationFrame(tick);
+    }
+
+    if(prefersReduced){
+      // draw one static frame
+      tick();
+    } else {
+      requestAnimationFrame(tick);
+    }
   </script>
 </body>
 </html>
