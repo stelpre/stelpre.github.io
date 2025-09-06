@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PRENTAKIS STELIOS — CV</title>
+  <meta name="description" content="Curriculum Vitae for Stylianos (Stelios) Prentakis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="bgfx" class="bg" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">Stelios</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="site-nav" id="site-nav">
+      <a href="index.html">Main</a>
+      <a href="cv.html" aria-current="page">CV</a>
+      <a href="tutoring.html">Tutoring Material</a>
+      <a href="updates.html">Project Updates</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section reveal">
+      <header class="section-head">
+        <h2>Curriculum Vitae</h2>
+        <p class="muted">PDF download and links.</p>
+      </header>
+      <div class="grid two">
+        <article class="card lift">
+          <h3>Download</h3>
+          <p>Latest CV with coursework, projects, and tutoring.</p>
+          <a class="btn primary" href="assets/autoCV.pdf">Download CV (PDF)</a>
+          <ul class="inline-icons">
+            <li><a href="mailto:prentakistelios@gmail.com">Email</a></li>
+            <li><a href="https://github.com/stelpre">GitHub</a></li>
+            <li><a href="https://linkedin.com/in/stylianos-prentakis">LinkedIn</a></li>
+          </ul>
+          <p class="muted small">Athens, Greece · +30 698 185 5086</p>
+        </article>
+        <article class="card lift">
+          <h3>About</h3>
+          <p>NTUA ECE student focusing on quantum algorithms, complexity, and C++ systems.
+          Interested in research roles and academically rigorous engineering.</p>
+          <p class="muted small">Update the PDF at <code>/assets/autoCV.pdf</code>.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Stelios Prentakis</p>
+  </footer>
+
+  <script>
+    const btn=document.querySelector('.nav-toggle'); const nav=document.getElementById('site-nav'); if(btn){btn.addEventListener('click',()=>{const open=btn.getAttribute('aria-expanded')==='true'; btn.setAttribute('aria-expanded',String(!open)); nav.classList.toggle('open');});}
+    const observer=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('reveal-in'); observer.unobserve(e.target);}})},{threshold:.15}); document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    document.getElementById('year').textContent=new Date().getFullYear();
+    // Canvas FX
+    const canvas=document.getElementById('bgfx'); const ctx=canvas.getContext('2d'); let w,h,dpr; function resize(){ dpr=Math.min(devicePixelRatio||1,2); w=canvas.width=Math.floor(innerWidth*dpr); h=canvas.height=Math.floor(innerHeight*dpr); canvas.style.width=innerWidth+'px'; canvas.style.height=innerHeight+'px'; } resize(); addEventListener('resize',resize);
+    const N=42,SPEED=0.08; const prefersReduced=matchMedia('(prefers-reduced-motion: reduce)').matches; let nodes=Array.from({length:N},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()*2-1)*SPEED*dpr,vy:(Math.random()*2-1)*SPEED*dpr})); function tick(){ ctx.clearRect(0,0,w,h); const g=ctx.createRadialGradient(w*.25,h*.25,0,w*.25,h*.25,Math.max(w,h)*.8); g.addColorStop(0,'rgba(40,70,120,.25)'); g.addColorStop(1,'rgba(0,0,0,0)'); ctx.fillStyle=g; ctx.fillRect(0,0,w,h); const TH=180*dpr; for(let i=0;i<N;i++){const a=nodes[i]; for(let j=i+1;j<N;j++){const b=nodes[j]; const d=Math.hypot(a.x-b.x,a.y-b.y); if(d<TH){const a1=1-d/TH; ctx.strokeStyle=`rgba(84,197,255,${.12*a1})`; ctx.lineWidth=1*dpr; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo((a.x+b.x)/2,a.y); ctx.lineTo((a.x+b.x)/2,b.y); ctx.lineTo(b.x,b.y); ctx.stroke();}}} for(const n of nodes){ ctx.fillStyle='rgba(167,139,250,.7)'; ctx.beginPath(); ctx.arc(n.x,n.y,1.6*dpr,0,Math.PI*2); ctx.fill(); if(!prefersReduced){ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>w) n.vx*=-1; if(n.y<0||n.y>h) n.vy*=-1; }} if(!prefersReduced) requestAnimationFrame(tick);} if(prefersReduced){tick();} else {requestAnimationFrame(tick);} 
+  </script>
+</body>
+</html>
