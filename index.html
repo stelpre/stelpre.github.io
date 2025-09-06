@@ -1,91 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- MAIN: Entry page linking to CV, Tutoring Material, and Project Updates -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PRENTAKIS STELIOS — Main</title>
-  <meta name="description" content="Main hub for Stylianos (Stelios) Prentakis — NTUA ECE. Links to CV, Tutoring Material, and Project Updates." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stylianos Prentakis</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Round profile image next to title */
+    .title-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #444;
+    }
+
+    .intro-text {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
 </head>
 <body>
-  <canvas id="bgfx" class="bg" aria-hidden="true"></canvas>
-
-  <header class="site-header">
-    <a class="brand" href="index.html">Stelios</a>
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-    <nav class="site-nav" id="site-nav">
-      <a href="index.html" aria-current="page">Main</a>
-      <a href="cv.html">CV</a>
-      <a href="tutoring.html">Tutoring Material</a>
-      <a href="updates.html">Project Updates</a>
-    </nav>
-  </header>
-
-  <section class="hero reveal" aria-label="Intro">
-    <div class="hero-inner">
-      <h1 class="page-title">PRENTAKIS <span class="tight-break"></span> STELIOS</h1>
-      <p class="subtitle">NTUA ECE • Quantum algorithms &amp; complexity • C++</p>
-      <div class="cta">
-        <a class="btn primary" href="cv.html">See CV</a>
-        <a class="btn" href="tutoring.html">Tutoring Material</a>
-        <a class="btn" href="updates.html">Project Updates</a>
-      </div>
-    </div>
-  </section>
-
   <main>
-    <section class="section reveal">
-      <header class="section-head">
-        <h2>Welcome</h2>
-        <p class="muted">Choose a section.</p>
-      </header>
-      <div class="grid three">
-        <article class="card lift">
-          <h3>Curriculum Vitae</h3>
-          <p>Coursework, projects, and contact details.</p>
-          <div class="links"><a class="btn primary" href="cv.html">Open CV</a></div>
-        </article>
-        <article class="card lift">
-          <h3>Tutoring Material</h3>
-          <p>Assignments, cheat sheets, and resources.</p>
-          <div class="links"><a class="btn primary" href="tutoring.html">Open Material</a></div>
-        </article>
-        <article class="card lift">
-          <h3>Project Updates</h3>
-          <p>Recent work and experiments.</p>
-          <div class="links"><a class="btn primary" href="updates.html">Open Updates</a></div>
-        </article>
-      </div>
-    </section>
+    <div class="title-container">
+      <h1>Stylianos Prentakis</h1>
+      <img src="assets/profile.png" alt="Profile picture" class="profile-pic">
+    </div>
+
+    <p class="intro-text">
+      Welcome to my personal website. Here you’ll find my academic background, teaching material, and updates on projects I am working on.
+    </p>
   </main>
-
-  <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Stelios Prentakis · <span class="muted">Exploring the limits of computation</span></p>
-  </footer>
-
-  <script>
-    // Shared UI scripts (same block appears on every page). Extract to main.js if desired.
-    const btn = document.querySelector('.nav-toggle');
-    const nav = document.getElementById('site-nav');
-    if(btn){ btn.addEventListener('click', () => { const open = btn.getAttribute('aria-expanded') === 'true'; btn.setAttribute('aria-expanded', String(!open)); nav.classList.toggle('open'); }); }
-
-    // Reveal on scroll
-    const observer = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('reveal-in'); observer.unobserve(entry.target); } }); }, {threshold: 0.15});
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Background FX canvas (quantum/graph lines)
-    const canvas = document.getElementById('bgfx'); const ctx = canvas.getContext('2d'); let w,h,dpr; function resize(){ dpr=Math.min(window.devicePixelRatio||1,2); w=canvas.width=Math.floor(innerWidth*dpr); h=canvas.height=Math.floor(innerHeight*dpr); canvas.style.width=innerWidth+'px'; canvas.style.height=innerHeight+'px'; } resize(); addEventListener('resize',resize);
-    const N=42, SPEED=0.08; let nodes = Array.from({length:N},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()*2-1)*SPEED*dpr,vy:(Math.random()*2-1)*SPEED*dpr}));
-    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function tick(){ ctx.clearRect(0,0,w,h); const g=ctx.createRadialGradient(w*0.25,h*0.25,0,w*0.25,h*0.25,Math.max(w,h)*0.8); g.addColorStop(0,'rgba(40,70,120,0.25)'); g.addColorStop(1,'rgba(0,0,0,0)'); ctx.fillStyle=g; ctx.fillRect(0,0,w,h); const TH=180*dpr; for(let i=0;i<N;i++){ const a=nodes[i]; for(let j=i+1;j<N;j++){ const b=nodes[j]; const dx=a.x-b.x, dy=a.y-b.y, dist=Math.hypot(dx,dy); if(dist<TH){ const alpha=1-dist/TH; ctx.strokeStyle=`rgba(84,197,255,${0.12*alpha})`; ctx.lineWidth=1*dpr; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo((a.x+b.x)/2, a.y); ctx.lineTo((a.x+b.x)/2, b.y); ctx.lineTo(b.x,b.y); ctx.stroke(); } } } for(const n of nodes){ ctx.fillStyle='rgba(167,139,250,0.7)'; ctx.beginPath(); ctx.arc(n.x,n.y,1.6*dpr,0,Math.PI*2); ctx.fill(); if(!prefersReduced){ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>w) n.vx*=-1; if(n.y<0||n.y>h) n.vy*=-1; } } if(!prefersReduced) requestAnimationFrame(tick); }
-    if(prefersReduced){ tick(); } else { requestAnimationFrame(tick); }
-  </script>
 </body>
 </html>
