@@ -1,46 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stelios - Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stelios — Portfolio</title>
+  <meta name="description" content="Portfolio, teaching material, and projects by Stelios." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Stelios</h1>
-    <p>Electrical and Computer Engineering Student, NTUA</p>
-    <nav>
-      <a href="#about">About</a> |
-      <a href="#projects">Projects</a> |
+  <header class="site-header">
+    <a class="brand" href="#top">Stelios</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="site-nav" id="site-nav">
+      <a href="#showcase">Showcase</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Third-year undergraduate in Electrical and Computer Engineering at NTUA. Interests: theoretical computer science, quantum computing, algorithms, programming languages.</p>
-  </section>
+  <!-- SHOWCASE: CV + updates -->
+  <main id="top">
+    <section id="showcase" class="section">
+      <h1>Showcase</h1>
+      <p class="lede">Electrical and Computer Engineering student at NTUA. Interests: theoretical CS, quantum computing, algorithms, PL.</p>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li><b>Project 1:</b> Short description.</li>
-      <li><b>Project 2:</b> Short description.</li>
-      <li><b>Project 3:</b> Short description.</li>
-    </ul>
-  </section>
+      <div class="grid two">
+        <article class="card">
+          <h2>CV</h2>
+          <p>Add a PDF to <code>/assets/cv.pdf</code> and link it here.</p>
+          <p><a class="btn" href="assets/cv.pdf">Download CV</a></p>
+          <ul class="inline-icons">
+            <li><a href="mailto:your_email@example.com" rel="me">Email</a></li>
+            <li><a href="https://github.com/stelpre" rel="me">GitHub</a></li>
+            <li><a href="#" rel="me">LinkedIn</a></li>
+          </ul>
+        </article>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:your_email@example.com">your_email@example.com</a></p>
-    <p>GitHub: <a href="https://github.com/stelpre">github.com/stelpre</a></p>
-    <p>LinkedIn: <a href="#">LinkedIn Profile</a></p>
-  </section>
+        <article class="card">
+          <h2>Updates</h2>
+          <ul class="timeline" aria-live="polite">
+            <!-- Add newest first -->
+            <li><time datetime="2025-09-01">Sep 1, 2025</time> Started tutoring Algorithms I.</li>
+            <li><time datetime="2025-07-15">Jul 15, 2025</time> Built a SAT solver in C++.</li>
+            <li><time datetime="2025-05-20">May 20, 2025</time> Presented term project on QAOA.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Stelios</p>
+    <!-- TEACHING: assignments + materials -->
+    <section id="teaching" class="section">
+      <h1>Teaching</h1>
+      <p>Assignments, notes, and helper code for tutoring sessions.</p>
+
+      <div class="card">
+        <h2>Current courses</h2>
+        <ul class="chips">
+          <li>Algorithms I</li>
+          <li>Discrete Mathematics</li>
+          <li>Programming in C++</li>
+        </ul>
+      </div>
+
+      <div class="grid two">
+        <article class="card">
+          <h2>Assignments</h2>
+          <ol class="list-docs">
+            <!-- Replace with real files under /teaching/ -->
+            <li>
+              <a href="teaching/algorithms1-hw1.pdf">HW1: Asymptotics and Recurrences</a>
+              <span class="meta">due Oct 10, 2025</span>
+            </li>
+            <li>
+              <a href="teaching/discrete-sets-proofs.pdf">Problem set: Sets and Induction</a>
+              <span class="meta">solutions Oct 17, 2025</span>
+            </li>
+            <li>
+              <a href="teaching/cpp-lab1.zip">C++ Lab 1 Starter</a>
+              <span class="meta">starter kit</span>
+            </li>
+          </ol>
+        </article>
+
+        <article class="card">
+          <h2>Useful material</h2>
+          <ul class="list-links">
+            <li><a href="teaching/cheatsheet-asymptotics.pdf">Asymptotics cheatsheet</a></li>
+            <li><a href="teaching/proofs-mini-guide.pdf">Proofs mini-guide</a></li>
+            <li><a href="teaching/cpp-style-guide.pdf">C++ style guide</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS: links to repos and demos -->
+    <section id="projects" class="section">
+      <h1>Projects</h1>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="chip" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" data-filter="theory">Theory</button>
+        <button class="chip" data-filter="systems">Systems</button>
+        <button class="chip" data-filter="cpp">C++</button>
+        <button class="chip" data-filter="python">Python</button>
+      </div>
+
+      <div class="grid three project-grid" id="project-grid">
+        <!-- Duplicate a card per project -->
+        <article class="card project" data-tags="cpp systems">
+          <h2>SAT Solver</h2>
+          <p>CDCL solver with VSIDS and clause learning.</p>
+          <p class="links">
+            <a href="https://github.com/stelpre/sat-solver">Repo</a>
+            <a href="#">Write-up</a>
+          </p>
+        </article>
+
+        <article class="card project" data-tags="python theory">
+          <h2>QAOA Playground</h2>
+          <p>Experiments with Max-Cut on small graphs.</p>
+          <p class="links">
+            <a href="https://github.com/stelpre/qaoa-playground">Repo</a>
+            <a href="#">Notebook</a>
+          </p>
+        </article>
+
+        <article class="card project" data-tags="cpp systems">
+          <h2>Tiny Compiler</h2>
+          <p>Lexing, parsing, and bytecode VM for a toy language.</p>
+          <p class="links">
+            <a href="https://github.com/stelpre/tiny-compiler">Repo</a>
+            <a href="#">Demo</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h1>Contact</h1>
+      <ul class="list-links">
+        <li>Email: <a href="mailto:your_email@example.com">your_email@example.com</a></li>
+        <li>GitHub: <a href="https://github.com/stelpre">github.com/stelpre</a></li>
+        <li>LinkedIn: <a href="#">LinkedIn profile</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Stelios</p>
   </footer>
+
+  <script>
+    // Mobile nav toggle
+    const btn = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('site-nav');
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('open');
+    });
+
+    // Project tag filtering
+    const chips = document.querySelectorAll('.filters .chip');
+    const cards = document.querySelectorAll('.project-grid .project');
+    chips.forEach(chip => chip.addEventListener('click', () => {
+      chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+      chip.setAttribute('aria-pressed', 'true');
+      const tag = chip.dataset.filter;
+      cards.forEach(card => {
+        const tags = card.dataset.tags.split(' ');
+        card.style.display = (tag === 'all' || tags.includes(tag)) ? '' : 'none';
+      });
+    }));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
-
