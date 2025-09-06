@@ -1,64 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PRENTAKIS STELIOS — CV</title>
-<meta name="description" content="Curriculum Vitae for Stylianos (Stelios) Prentakis." />
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<canvas id="bgfx" class="bg" aria-hidden="true"></canvas>
-
-
-<header class="site-header">
-<a class="brand" href="index.html">Stelios</a>
-<button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-<nav class="site-nav" id="site-nav">
-<a href="index.html">Main</a>
-<a href="cv.html" aria-current="page">CV</a>
-<a href="tutoring.html">Tutoring Material</a>
-<a href="updates.html">Project Updates</a>
-</nav>
-</header>
-
-
-<main>
-<section class="section reveal">
-<header class="section-head">
-<h2>Curriculum Vitae</h2>
-<p class="muted">PDF download and links.</p>
-</header>
-<div class="grid two">
-<article class="card lift">
-<h3>Download</h3>
-<p>Latest CV with coursework, projects, and tutoring.</p>
-<a class="btn primary" href="assets/autoCV.pdf">Download CV (PDF)</a>
-<ul class="inline-icons">
-<li><a href="mailto:prentakistelios@gmail.com">Email</a></li>
-<li><a href="https://github.com/stelpre">GitHub</a></li>
-<li><a href="https://linkedin.com/in/stylianos-prentakis">LinkedIn</a></li>
-</ul>
-<p class="muted small">Athens, Greece · +30 698 185 5086</p>
-</article>
-<article class="card lift">
-<h3>About</h3>
-<p>NTUA ECE student focusing on quantum algorithms, complexity, and C++ systems.
-Interested in research roles and academically rigorous engineering.</p>
-<p class="muted small">Update the PDF at <code>/assets/autoCV.pdf</code>.</p>
-</article>
-</div>
-</section>
-</main>
-
-
-<footer class="site-footer">
-<p>&copy; <span id="year"></span> Stelios Prentakis</p>
-</footer>
-
-
-<script>
-const btn=document.querySelector('.nav-toggle'); const nav=document.getElementById('site-nav'); if(btn){btn.addEventListener('click',()=>{const open=btn.getAttribute('aria-expanded')==='true'; btn.setAttribute('aria-expanded',String(!open)); nav.classList.toggle('open');});}
-</html>
+:root{
+--bg:#06070b;
+--surface:#0c0f17;
+--text:#e8ebf2;
+--muted:#99a2b3;
+--outline:#202637;
+--accent:#54c5ff;
+--accent-2:#a78bfa;
+--accent-3:#1de9d1;
+--radius:14px;
+--shadow-lg: 0 10px 30px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.03) inset;
+--shadow-sm: 0 6px 20px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(1200px 800px at 10% 10%,#0a1120 0%,var(--bg) 60%),radial-gradient(900px 900px at 90% 80%,#0a0f19 0%,var(--bg) 70%);color:var(--text);line-height:1.6}
+.bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;filter:saturate(115%) blur(.2px)}
+.site-header{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:rgba(8,10,15,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--outline)}
+.brand{font-family:'Comfortaa',system-ui;font-weight:700;letter-spacing:.3px}
+.site-nav{display:flex;gap:16px}
+.site-nav a{padding:10px 8px;border-radius:8px;position:relative}
+.site-nav a[aria-current="page"]{outline:2px solid rgba(112,178,255,.35)}
+.site-nav a::after{content:"";position:absolute;left:8px;right:8px;bottom:6px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.site-nav a:hover::after{transform:scaleX(1)}
+.nav-toggle{display:none;font:inherit;background:none;border:1px solid var(--outline);color:var(--text);padding:6px 10px;border-radius:8px}
+.hero{min-height:58vh;display:grid;place-items:center;text-align:center;padding:56px 16px}
+.hero-inner{max-width:1000px}
+.page-title{font-family:'Comfortaa',system-ui;font-size:clamp(2.6rem,6.2vw,5.2rem);font-weight:700;letter-spacing:.02em;line-height:1.05;margin:0 0 8px 0;background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tight-break{display:inline}
+@media (max-width:520px){.tight-break{display:block}}
+.subtitle{font-size:clamp(1.05rem,2.6vw,1.4rem);color:var(--muted);margin:0 0 12px 0}
+.hero .cta{display:flex;gap:12px;justify-content:center;margin-top:16px}
+.section{padding:64px 16px;max-width:1100px;margin:0 auto}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px}
+.section h2{margin:0}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.lift,.reveal,.bg{transition:none;animation:none}}
