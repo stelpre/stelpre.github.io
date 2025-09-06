@@ -1,371 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    PERSONAL SITE — TAILORED AESTHETIC
-    Author: Stylianos (Stelios) Prentakis
-    Purpose: Single-page portfolio with quantum/algorithms vibe.
-
-    HOW TO EDIT THIS FILE QUICKLY
-    1) Change hero title/subtitle in the HERO section.
-    2) Update links and text in Showcase/Teaching/Projects/Contact.
-    3) Add/remove project cards by duplicating <article class="project ...">.
-    4) If you add new project tags, also add matching <button class="chip" data-filter="...">.
-    5) Most visual tweaks live in style.css under the :root variables.
-  -->
+  <!-- MAIN: Entry page linking to CV, Tutoring Material, and Project Updates -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stelios' Website</title>
-  <meta name="description" content="Quantum algorithms, decision trees, and projects by Stylianos (Stelios) Prentakis — NTUA ECE." />
-
-  <!-- Fonts: Comfortaa (display) and Manrope (text). Safe fallbacks included in CSS. -->
+  <title>PRENTAKIS STELIOS — Main</title>
+  <meta name="description" content="Main hub for Stylianos (Stelios) Prentakis — NTUA ECE. Links to CV, Tutoring Material, and Project Updates." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Site styles and motion tokens -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!--
-    BACKGROUND FX: Algorithmic/quantum circuit lines
-    - Drawn on <canvas id="bgfx"> via the script at the end of the page.
-    - Honors prefers-reduced-motion at runtime.
-    - To disable entirely, remove this <canvas> and the script block that references it.
-  -->
   <canvas id="bgfx" class="bg" aria-hidden="true"></canvas>
 
-  <!-- HEADER: brand + nav. Links scroll to sections below. -->
-  <header class="site-header" id="top">
-    <a class="brand" href="#top">Main Page</a>
-    <!-- Mobile menu toggle appears on small screens via CSS -->
+  <header class="site-header">
+    <a class="brand" href="index.html">Stelios</a>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     <nav class="site-nav" id="site-nav">
-      <!-- Add new anchors if you add new sections -->
-      <a href="#showcase">CV</a>
-      <a href="#teaching">Teaching</a>
-      <a href="#projects">Project Updates</a>
-      <a href="#contact">Contact Me</a>
+      <a href="index.html" aria-current="page">Main</a>
+      <a href="cv.html">CV</a>
+      <a href="tutoring.html">Tutoring Material</a>
+      <a href="updates.html">Project Updates</a>
     </nav>
   </header>
 
-  <!-- HERO: prominent name + succinct positioning statement -->
   <section class="hero reveal" aria-label="Intro">
     <div class="hero-inner">
-      <!-- Edit your name here. Keep the span for better wrapping on mobile. -->
       <h1 class="page-title">PRENTAKIS <span class="tight-break"></span> STELIOS</h1>
-      <!-- Keep this line short and concrete. Edit domains freely. -->
-      <p class="subtitle">Electrical and Computer Engineering Student • Maths and Physics Tutor</p>
+      <p class="subtitle">NTUA ECE • Quantum algorithms &amp; complexity • C++</p>
       <div class="cta">
-        <a class="btn primary" href="#showcase">Check my profile</a>
-        <a class="btn" href="#projects">View Teaching Material</a>
-        <a class="btn" href="#projects">View Project Updates</a>
+        <a class="btn primary" href="cv.html">See CV</a>
+        <a class="btn" href="tutoring.html">Tutoring Material</a>
+        <a class="btn" href="updates.html">Project Updates</a>
       </div>
     </div>
   </section>
 
   <main>
-    <!-- =================================================================
-         SHOWCASE: CV card + Recent updates
-         ================================================================= -->
-    <section id="showcase" class="section reveal">
+    <section class="section reveal">
       <header class="section-head">
-        <h2>Showcase</h2>
-        <p class="muted">CV and recent updates.</p>
+        <h2>Welcome</h2>
+        <p class="muted">Choose a section.</p>
       </header>
-
-      <div class="grid two">
-        <!-- CV card: put your PDF under /assets and point the button to it. -->
-        <article class="card lift">
-          <h3>CV</h3>
-          <p>Coursework, quantum projects, and tutoring experience.</p>
-          <a class="btn primary" href="assets/autoCV.pdf">Download CV (PDF)</a>
-          <ul class="inline-icons">
-            <li><a href="mailto:prentakistelios@gmail.com">Email</a></li>
-            <li><a href="https://github.com/stelpre">GitHub</a></li>
-            <li><a href="https://linkedin.com/in/stylianos-prentakis">LinkedIn</a></li>
-          </ul>
-          <p class="muted small">Athens, Greece · +30 698 185 5086</p>
-        </article>
-
-        <!-- Updates: newest first. datetime uses YYYY-MM-DD for ISO validity. -->
-        <article class="card lift">
-          <h3>Updates</h3>
-          <ul class="timeline">
-            <li><time datetime="2025-09-01">Sep 1, 2025</time> Tutoring Algorithms I.</li>
-            <li><time datetime="2025-07-15">Jul 15, 2025</time> Released CDCL SAT solver.</li>
-            <li><time datetime="2025-05-20">May 20, 2025</time> Presented QAOA project.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- =================================================================
-         TEACHING: assignments, resources, and current courses
-         - Place files under /teaching/ then link them here.
-         ================================================================= -->
-    <section id="teaching" class="section reveal">
-      <header class="section-head">
-        <h2>Teaching</h2>
-        <p class="muted">Assignments and reference sheets.</p>
-      </header>
-
       <div class="grid three">
         <article class="card lift">
-          <h3>Assignments</h3>
-          <ol class="list-docs">
-            <li>
-              <a class="doc" href="teaching/algorithms1-hw1.pdf">
-                <span>HW1: Asymptotics and Recurrences</span>
-                <span class="meta">due Oct 10, 2025</span>
-              </a>
-            </li>
-            <li>
-              <a class="doc" href="teaching/discrete-sets-proofs.pdf">
-                <span>Problem set: Sets and Induction</span>
-                <span class="meta">solutions Oct 17, 2025</span>
-              </a>
-            </li>
-            <li>
-              <a class="doc" href="teaching/cpp-lab1.zip">
-                <span>C++ Lab 1 Starter</span>
-                <span class="meta">starter kit</span>
-              </a>
-            </li>
-          </ol>
+          <h3>Curriculum Vitae</h3>
+          <p>Coursework, projects, and contact details.</p>
+          <div class="links"><a class="btn primary" href="cv.html">Open CV</a></div>
         </article>
-
         <article class="card lift">
-          <h3>Useful material</h3>
-          <ul class="list-links">
-            <li><a href="teaching/cheatsheet-asymptotics.pdf">Asymptotics cheatsheet</a></li>
-            <li><a href="teaching/proofs-mini-guide.pdf">Proofs mini-guide</a></li>
-            <li><a href="teaching/cpp-style-guide.pdf">C++ style guide</a></li>
-          </ul>
+          <h3>Tutoring Material</h3>
+          <p>Assignments, cheat sheets, and resources.</p>
+          <div class="links"><a class="btn primary" href="tutoring.html">Open Material</a></div>
         </article>
-
-        <article class="card lift highlight">
-          <h3>Current courses</h3>
-          <!-- Chips are just styled <li>. Add/remove freely. -->
-          <ul class="chips">
-            <li>Algorithms I</li>
-            <li>Discrete Math</li>
-            <li>C++ Programming</li>
-          </ul>
-          <p class="muted small">Materials update weekly.</p>
+        <article class="card lift">
+          <h3>Project Updates</h3>
+          <p>Recent work and experiments.</p>
+          <div class="links"><a class="btn primary" href="updates.html">Open Updates</a></div>
         </article>
       </div>
-    </section>
-
-    <!-- =================================================================
-         PROJECTS: filterable cards
-         - To add a new topical filter: add a <button class="chip" data-filter="tag">
-           and give project cards a matching tag inside data-tags.
-         ================================================================= -->
-    <section id="projects" class="section reveal">
-      <header class="section-head">
-        <h2>Projects</h2>
-        <p class="muted">Filter by area.</p>
-      </header>
-
-      <!-- Filters: update labels and data-filter values to match your tags. -->
-      <div class="filters" role="group" aria-label="Filter projects">
-        <button class="chip" data-filter="all" aria-pressed="true">All</button>
-        <button class="chip" data-filter="quantum">Quantum</button>
-        <button class="chip" data-filter="complexity">Complexity</button>
-        <button class="chip" data-filter="cpp">C++</button>
-        <button class="chip" data-filter="python">Python</button>
-      </div>
-
-      <!-- Project cards: duplicate and adjust content + data-tags. -->
-      <div class="project-grid">
-        <article class="project card lift" data-tags="cpp complexity">
-          <h3>SAT Solver</h3>
-          <p>CDCL with VSIDS and clause learning.</p>
-          <div class="links">
-            <a href="https://github.com/stelpre/sat-solver">Repo</a>
-            <a href="#">Write-up</a>
-          </div>
-        </article>
-
-        <article class="project card lift" data-tags="python quantum">
-          <h3>QAOA Playground</h3>
-          <p>Max-Cut experiments on small graphs.</p>
-          <div class="links">
-            <a href="https://github.com/stelpre/qaoa-playground">Repo</a>
-            <a href="#">Notebook</a>
-          </div>
-        </article>
-
-        <article class="project card lift" data-tags="cpp systems complexity">
-          <h3>Tiny Compiler</h3>
-          <p>Lexer, parser, and bytecode VM.</p>
-          <div class="links">
-            <a href="https://github.com/stelpre/tiny-compiler">Repo</a>
-            <a href="#">Demo</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- CONTACT: edit copy or add more links as needed. -->
-    <section id="contact" class="section reveal">
-      <header class="section-head">
-        <h2>Contact</h2>
-        <p class="muted">Get in touch.</p>
-      </header>
-      <ul class="list-links">
-        <li>Email: <a href="mailto:prentakistelios@gmail.com">prentakistelios@gmail.com</a></li>
-        <li>Phone: <a href="tel:+306981855086">+30 698 185 5086</a></li>
-        <li>LinkedIn: <a href="https://linkedin.com/in/stylianos-prentakis">linkedin.com/in/stylianos-prentakis</a></li>
-        <li>Location: Athens, Greece</li>
-      </ul>
     </section>
   </main>
 
-  <!-- FOOTER: short motto to personalize. -->
   <footer class="site-footer">
     <p>&copy; <span id="year"></span> Stelios Prentakis · <span class="muted">Exploring the limits of computation</span></p>
   </footer>
 
-  <!-- ================================================================
-       SCRIPTS: nav toggle, smooth scroll, reveal on scroll, tag filter,
-                and background canvas animation.
-       Tip: You can move this block into a separate .js file if desired.
-       ================================================================ -->
   <script>
-    // ======= NAV: mobile menu toggle =======
+    // Shared UI scripts (same block appears on every page). Extract to main.js if desired.
     const btn = document.querySelector('.nav-toggle');
     const nav = document.getElementById('site-nav');
-    btn.addEventListener('click', () => {
-      const open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      nav.classList.toggle('open');
-    });
+    if(btn){ btn.addEventListener('click', () => { const open = btn.getAttribute('aria-expanded') === 'true'; btn.setAttribute('aria-expanded', String(!open)); nav.classList.toggle('open'); }); }
 
-    // ======= Smooth anchor scroll (kept brief; respects CSS reduced motion) =======
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id=a.getAttribute('href');
-        const el=document.querySelector(id);
-        if(!el) return;
-        e.preventDefault();
-        el.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-    });
-
-    // ======= Reveal on scroll: fade-and-lift sections once =======
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('reveal-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {threshold: 0.15});
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('reveal-in'); observer.unobserve(entry.target); } }); }, {threshold: 0.15});
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-    // ======= Project tag filtering =======
-    const chips = document.querySelectorAll('.filters .chip');
-    const cards = document.querySelectorAll('.project-grid .project');
-    chips.forEach(chip => chip.addEventListener('click', () => {
-      chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
-      chip.setAttribute('aria-pressed', 'true');
-      const tag = chip.dataset.filter;
-      cards.forEach(card => {
-        const tags = card.dataset.tags.split(' ');
-        card.style.display = (tag === 'all' || tags.includes(tag)) ? '' : 'none';
-      });
-    }));
-
-    // ======= Footer year =======
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ======= Background FX: quantum/graph lines on canvas =======
-    //  Customize N for density, speed for motion, and colors in strokeStyle/fillStyle.
-    const canvas = document.getElementById('bgfx');
-    const ctx = canvas.getContext('2d');
-    let w, h, dpr;
-
-    function resize(){
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = canvas.width = Math.floor(innerWidth * dpr);
-      h = canvas.height = Math.floor(innerHeight * dpr);
-      canvas.style.width = innerWidth + 'px';
-      canvas.style.height = innerHeight + 'px';
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    // Node field parameters
-    const N = 42; // number of nodes; 30–70 recommended
-    const SPEED = 0.08; // base velocity in px/frame (scaled by dpr)
-
-    let nodes = [];
-    function resetNodes(){
-      nodes = Array.from({length:N}, ()=>({
-        x: Math.random()*w,
-        y: Math.random()*h,
-        vx: (Math.random()*2-1)*SPEED*dpr,
-        vy: (Math.random()*2-1)*SPEED*dpr
-      }));
-    }
-    resetNodes();
-
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function tick(){
-      ctx.clearRect(0,0,w,h);
-
-      // Background radial wash to add depth. Adjust endpoints for color/size.
-      const g = ctx.createRadialGradient(w*0.25,h*0.25,0,w*0.25,h*0.25,Math.max(w,h)*0.8);
-      g.addColorStop(0, 'rgba(40,70,120,0.25)');
-      g.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = g;
-      ctx.fillRect(0,0,w,h);
-
-      // Edges: connect close nodes. Decrease/Increase threshold for density.
-      const TH = 180*dpr; // connection threshold (px)
-      for(let i=0;i<N;i++){
-        const a = nodes[i];
-        for(let j=i+1;j<N;j++){
-          const b = nodes[j];
-          const dx=a.x-b.x, dy=a.y-b.y;
-          const dist = Math.hypot(dx,dy);
-          if(dist < TH){
-            const alpha = 1 - dist/TH; // fade with distance
-            ctx.strokeStyle = `rgba(84,197,255,${0.12*alpha})`; // cyan lines
-            ctx.lineWidth = 1*dpr;
-            ctx.beginPath();
-            // Right-angle kink evokes a "circuit" look. Swap to direct line if preferred.
-            ctx.moveTo(a.x,a.y);
-            ctx.lineTo((a.x+b.x)/2, a.y);
-            ctx.lineTo((a.x+b.x)/2, b.y);
-            ctx.lineTo(b.x,b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Nodes: small purple dots. Increase radius for stronger presence.
-      for(const n of nodes){
-        ctx.fillStyle = 'rgba(167,139,250,0.7)'; // purple dots
-        ctx.beginPath();
-        ctx.arc(n.x,n.y,1.6*dpr,0,Math.PI*2);
-        ctx.fill();
-
-        if(!prefersReduced){
-          n.x += n.vx; n.y += n.vy;
-          // bounce at edges
-          if(n.x<0||n.x>w) n.vx*=-1;
-          if(n.y<0||n.y>h) n.vy*=-1;
-        }
-      }
-
-      if(!prefersReduced) requestAnimationFrame(tick);
-    }
-
-    // Draw once if reduced-motion; animate otherwise.
+    // Background FX canvas (quantum/graph lines)
+    const canvas = document.getElementById('bgfx'); const ctx = canvas.getContext('2d'); let w,h,dpr; function resize(){ dpr=Math.min(window.devicePixelRatio||1,2); w=canvas.width=Math.floor(innerWidth*dpr); h=canvas.height=Math.floor(innerHeight*dpr); canvas.style.width=innerWidth+'px'; canvas.style.height=innerHeight+'px'; } resize(); addEventListener('resize',resize);
+    const N=42, SPEED=0.08; let nodes = Array.from({length:N},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()*2-1)*SPEED*dpr,vy:(Math.random()*2-1)*SPEED*dpr}));
+    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function tick(){ ctx.clearRect(0,0,w,h); const g=ctx.createRadialGradient(w*0.25,h*0.25,0,w*0.25,h*0.25,Math.max(w,h)*0.8); g.addColorStop(0,'rgba(40,70,120,0.25)'); g.addColorStop(1,'rgba(0,0,0,0)'); ctx.fillStyle=g; ctx.fillRect(0,0,w,h); const TH=180*dpr; for(let i=0;i<N;i++){ const a=nodes[i]; for(let j=i+1;j<N;j++){ const b=nodes[j]; const dx=a.x-b.x, dy=a.y-b.y, dist=Math.hypot(dx,dy); if(dist<TH){ const alpha=1-dist/TH; ctx.strokeStyle=`rgba(84,197,255,${0.12*alpha})`; ctx.lineWidth=1*dpr; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo((a.x+b.x)/2, a.y); ctx.lineTo((a.x+b.x)/2, b.y); ctx.lineTo(b.x,b.y); ctx.stroke(); } } } for(const n of nodes){ ctx.fillStyle='rgba(167,139,250,0.7)'; ctx.beginPath(); ctx.arc(n.x,n.y,1.6*dpr,0,Math.PI*2); ctx.fill(); if(!prefersReduced){ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>w) n.vx*=-1; if(n.y<0||n.y>h) n.vy*=-1; } } if(!prefersReduced) requestAnimationFrame(tick); }
     if(prefersReduced){ tick(); } else { requestAnimationFrame(tick); }
   </script>
 </body>
