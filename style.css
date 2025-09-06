@@ -113,23 +113,34 @@ a:hover{text-decoration:underline}
   .lift,.bg{transition:none;animation:none}
 }
 
-/* ===== Fullscreen layout ===== */
-body, html {
-  height: 100%;
+/* ===== Light Mode (toggle by adding class="light" to <body>) ===== */
+body.light {
+  --bg:#f6f7fb;
+  --surface:#ffffff;
+  --text:#1c1d20;
+  --muted:#555e70;
+  --outline:#d2d6e0;
+  --accent:#0077cc;
+  --accent-2:#7b4dff;
+  --accent-3:#00c9a7;
+  --shadow-lg:0 10px 30px rgba(0,0,0,.08),0 1px 0 rgba(255,255,255,.8) inset;
+  --shadow-sm:0 6px 20px rgba(0,0,0,.05);
+  --radius:14px;
 }
 
-main, .container, .section {
-  min-height: 100vh;              /* always fill screen */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;        /* vertical centering */
-  align-items: center;            /* horizontal centering */
-  padding: 32px;                  /* spacing from edges */
-  box-sizing: border-box;
-}
-
-/* For text-heavy pages (CV, Tutoring, Updates) */
-main > * {
-  max-width: 900px;               /* keep content readable */
-  text-align: center;             /* center text by default */
+/* Respect system preference if user didn’t toggle manually */
+@media (prefers-color-scheme: light) {
+  body:not(.dark) {
+    --bg:#f6f7fb;
+    --surface:#ffffff;
+    --text:#1c1d20;
+    --muted:#555e70;
+    --outline:#d2d6e0;
+    --accent:#0077cc;
+    --accent-2:#7b4dff;
+    --accent-3:#00c9a7;
+    --shadow-lg:0 10px 30px rgba(0,0,0,.08),0 1px 0 rgba(255,255,255,.8) inset;
+    --shadow-sm:0 6px 20px rgba(0,0,0,.05);
+    --radius:14px;
+  }
 }
