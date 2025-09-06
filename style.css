@@ -1,8 +1,7 @@
 /*
-  Stelios Personal Site — style.css v2
-  Purpose: tokenized, fast, accessible CSS for a 4‑page static site.
-  How to customize: tweak variables in :root. Light mode auto via prefers-color-scheme.
-  Files using this: index.html, cv.html, tutoring.html, updates.html
+  Stelios Personal Site — style.css v3.0 (drop‑in replacement)
+  Changes: working auto light mode (prefers-color-scheme), refined link styling,
+  full base/layout/components, subtle identity background, print styles.
 */
 
 /* =========================
@@ -36,7 +35,7 @@
   --ease: cubic-bezier(.2,.7,.2,1);
 }
 
-/* Light theme override when the user prefers light */
+/* Light theme override automatically */
 @media (prefers-color-scheme: light){
   :root{
     --bg: #f6f8fc;
@@ -76,12 +75,19 @@ h3{font-size:var(--fs-1)}
 p{margin:.5em 0 1em; color:var(--ink)}
 small, .muted{color:var(--muted)}
 
-/* Links */
-a{color:var(--accent); text-decoration: none}
-a:hover{text-decoration: underline}
+/* Links — subtle underline that fits aesthetic */
+a{
+  color:var(--accent);
+  font-weight:500;
+  text-decoration:none;
+  border-bottom:1px dashed color-mix(in srgb, var(--accent) 55%, transparent);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+a:hover{ color:var(--accent-2); border-color:var(--accent-2) }
+a:focus-visible{ outline:2px solid var(--accent-2); outline-offset:3px; border-radius:4px }
 
-/* Code */
-code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+/* Inline code */
+code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; background:rgba(255,255,255,.06); padding:.1rem .35rem; border-radius:6px}
 pre{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid var(--border); padding:16px; border-radius:12px; overflow:auto}
 
 /* =========================
@@ -94,6 +100,17 @@ main{max-width:var(--max); margin-inline:auto; padding:24px}
 .stack > * + *{margin-top: var(--gap)}
 .cluster{display:flex; flex-wrap:wrap; gap: var(--gap)}
 .center{display:grid; place-items:center}
+.right{text-align:right}
+.center-text{text-align:center}
+.w-100{width:100%}
+.mt-0{margin-top:0}
+.mt-1{margin-top:.25rem}
+.mt-2{margin-top:.5rem}
+.mt-3{margin-top:1rem}
+.mr-1{margin-right:.25rem}
+.mb-0{margin-bottom:0}
+.hidden{display:none !important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
 /* Responsive fallbacks */
 @media (max-width: 720px){
@@ -154,25 +171,7 @@ input[type="search"], input[type="text"], select{
 }
 
 /* =========================
-   7) UTILITIES
-   ========================= */
-.hidden{display:none !important}
-.muted{color:var(--muted)}
-.mt-0{margin-top:0}
-.mt-1{margin-top:.25rem}
-.mt-2{margin-top:.5rem}
-.mt-3{margin-top:1rem}
-.mr-1{margin-right:.25rem}
-.mb-0{margin-bottom:0}
-.center-text{text-align:center}
-.right{text-align:right}
-.w-100{width:100%}
-
-/* Screen-reader only content */
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
-
-/* =========================
-   8) PAGE-SPECIFIC SUGGESTIONS
+   7) PAGE-SPECIFIC SUGGESTIONS
    ========================= */
 /* Home hero unit */
 .home-hero h1{margin-bottom:.2em}
@@ -190,7 +189,7 @@ input[type="search"], input[type="text"], select{
 .update .meta{color:var(--muted); font-size:.95em}
 
 /* =========================
-   9) BACKGROUND LATTICE (subtle identity)
+   8) BACKGROUND LATTICE (subtle identity)
    ========================= */
 /* Applies to body. Edit alphas to strengthen/soften. */
 body{
@@ -203,7 +202,7 @@ body{
 }
 
 /* =========================
-   10) PRINT STYLES (CV etc.)
+   9) PRINT STYLES (CV etc.)
    ========================= */
 @media print{
   header, nav, .btn, .no-print{display:none !important}
@@ -212,11 +211,11 @@ body{
 }
 
 /* =========================
-   HOW TO MODIFY QUICKLY
+   10) QUICK TWEAKS
    - Change brand colors: tweak --accent and --accent-2.
    - Sharper corners: reduce --radius.
    - Denser layout: reduce --gap and base padding in main.
-   - Softer background: reduce alpha in the background-image gradients.
+   - Softer background: lower alphas in background-image gradients.
    - Larger body text: bump --fs-0.
    - Remove card shadows: set --shadow: none.
    ========================= */
