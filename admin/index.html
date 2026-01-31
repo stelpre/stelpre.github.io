@@ -4,17 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
-  <title>Content Manager — Stelios Prentakis</title>
+  <title>Admin — Stelios Prentakis</title>
   <style>
-    body { font-family: system-ui, sans-serif; margin: 0; }
-    #auth-gate {
+    body { 
+      font-family: system-ui, sans-serif; 
+      margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       background: #f5f5f5;
     }
-    #auth-form {
+    .auth-form {
       background: white;
       padding: 2rem;
       border-radius: 8px;
@@ -22,8 +23,8 @@
       text-align: center;
       max-width: 400px;
     }
-    #auth-form h2 { margin-top: 0; }
-    #auth-form input {
+    .auth-form h2 { margin-top: 0; }
+    .auth-form input {
       padding: 0.5rem 1rem;
       font-size: 1rem;
       border: 1px solid #ddd;
@@ -32,7 +33,7 @@
       box-sizing: border-box;
       margin-bottom: 1rem;
     }
-    #auth-form button {
+    .auth-form button {
       padding: 0.5rem 1.5rem;
       font-size: 1rem;
       background: #3b82f6;
@@ -42,57 +43,53 @@
       cursor: pointer;
       width: 100%;
     }
-    #auth-form button:hover { background: #2563eb; }
-    #auth-form p { color: #666; font-size: 0.9rem; }
+    .auth-form button:hover { background: #2563eb; }
+    .auth-form p { color: #666; font-size: 0.9rem; }
+    .success { color: #16a34a; }
   </style>
 </head>
 <body>
-  <div id="auth-gate">
-    <div id="auth-form">
-      <h2>🔐 Admin Access</h2>
+  <div class="auth-form">
+    <h2>🔐 Admin Access</h2>
+    <div id="login-view">
       <p>Enter your GitHub Personal Access Token</p>
-      <input type="password" id="token" placeholder="ghp_xxxxxxxxxxxx" onkeypress="if(event.key==='Enter')authenticate()">
-      <button onclick="authenticate()">Login</button>
-      <p style="margin-top: 1rem;"><a href="#" onclick="clearToken(); return false;">Clear saved token</a></p>
+      <input type="password" id="token" placeholder="ghp_xxxxxxxxxxxx" onkeypress="if(event.key==='Enter')saveToken()">
+      <button onclick="saveToken()">Login</button>
+    </div>
+    <div id="logged-in-view" style="display: none;">
+      <p class="success">✓ Token saved</p>
+      <button onclick="clearToken()">Logout</button>
     </div>
   </div>
 
   <script>
-    function authenticate() {
+    function saveToken() {
       const token = document.getElementById('token').value.trim();
       if (token) {
-        // Store token in the format Decap CMS expects for GitHub backend
-        localStorage.setItem('netlify-cms-user', JSON.stringify({
-          token: token,
-          name: 'admin',
-          login: 'admin',
-          avatar_url: ''
-        }));
-        loadCMS();
+        localStorage.setItem('github-token', token);
+        showLoggedIn();
       }
     }
     
     function clearToken() {
-      localStorage.removeItem('netlify-cms-user');
-      location.reload();
+      localStorage.removeItem('github-token');
+      showLogin();
     }
     
-    function loadCMS() {
-      document.getElementById('auth-gate').style.display = 'none';
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
-      document.body.appendChild(script);
+    function showLoggedIn() {
+      document.getElementById('login-view').style.display = 'none';
+      document.getElementById('logged-in-view').style.display = 'block';
     }
     
-    // Check if token already exists
-    const stored = localStorage.getItem('netlify-cms-user');
-    if (stored) {
-      try {
-        const user = JSON.parse(stored);
-        if (user.token) {
-          loadCMS();
-        }
-      } catch (e) {}
+    function showLogin() {
+      document.getElementById('login-view').style.display = 'block';
+      document.getElementById('logged-in-view').style.display = 'none';
+      document.getElementById('token').value = '';
+    }
+    
+    // Check if token exists
+    if (localStorage.getItem('github-token')) {
+      showLoggedIn();
     }
   </script>
 </body>
