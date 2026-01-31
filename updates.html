@@ -3,23 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Stelios Prentakis Website</title>
+  <title>Project Updates — Stelios Prentakis</title>
 
-  <!-- Fonts for Manrope + Comfortaa -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Comfortaa:wght@700&display=swap" rel="stylesheet" />
-
-  <!-- Global styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Comfortaa:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/favicon.png" />
-
-  <!-- Meta (optional but recommended) -->
-  <meta name="color-scheme" content="dark light" />
-  <meta name="theme-color" content="#0c0f17" />
-  <meta name="description" content="Personal site of Stylianos Prentakis: CV, tutoring material, and project updates." />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#050608" />
+  <meta name="description" content="Research updates and projects by Stelios Prentakis in theoretical computer science and quantum computing." />
 </head>
 
 
@@ -41,38 +34,25 @@
       <header class="section-head">
         <h2>Updates</h2>
       </header>
-      <article class="card lift">
-        <ul class="timeline">
-          <li><time datetime="2025-09-06">Sep 6, 2025</time> Created Personal Website.</li>
+      <article class="card">
+        <ul class="timeline" id="timeline-container">
+          <!-- Loaded dynamically from data/updates.json -->
         </ul>
       </article>
     </section>
 
     <section class="section reveal">
       <header class="section-head">
-        <h2>My projects</h2>
+        <h2>My Projects</h2>
       </header>
 
-      <div class="filters" role="group" aria-label="Filter projects">
+      <div class="filters" role="group" aria-label="Filter projects" id="project-filters">
         <button class="chip" data-filter="all" aria-pressed="true">All</button>
-        <button class="chip" data-filter="programming">Programmng</button>
-        <button class="chip" data-filter="complexity">Complexity</button>
+        <!-- Filter buttons loaded dynamically -->
       </div>
 
-      <div class="project-grid">
-        <article class="project card lift" data-tags="programming">
-          <h3>Personal Website</h3>
-          <p> I share details about my background, teaching materials in maths and physics, and updates on the projects I'm working on.</p>
-          <div class="links">
-            <a href="https://stelpre.github.io/">Check it out!</a>
-          </div>
-        </article>
-
-        <article class="project card lift" data-tags="complexity">
-          <h3>Paper on Randomized Decision Tree Complexity (unnamed)</h3>
-          <p> I try to find a better lower bound on the randomized decision tree complexity of T-majority decision trees. Assosiated professor: Nikos Leonardos.</p>
-        </article>
-
+      <div class="project-grid" id="projects-container">
+        <!-- Projects loaded dynamically from data/projects.json -->
       </div>
     </section>
   </main>
@@ -82,16 +62,193 @@
   </footer>
 
   <script>
-    const btn=document.querySelector('.nav-toggle'); const nav=document.getElementById('site-nav'); if(btn){btn.addEventListener('click',()=>{const open=btn.getAttribute('aria-expanded')==='true'; btn.setAttribute('aria-expanded',String(!open)); nav.classList.toggle('open');});}
-    const observer=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('reveal-in'); observer.unobserve(e.target);}})},{threshold:.15}); document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-    document.getElementById('year').textContent=new Date().getFullYear();
+    // Navigation toggle
+    const btn = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('site-nav');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        nav.classList.toggle('open');
+      });
+    }
+    
+    // Reveal animation
+    const observer = new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('reveal-in');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Filters
-    const chips=document.querySelectorAll('.filters .chip'); const cards=document.querySelectorAll('.project-grid .project'); chips.forEach(ch=>ch.addEventListener('click',()=>{ chips.forEach(c=>c.setAttribute('aria-pressed','false')); ch.setAttribute('aria-pressed','true'); const tag=ch.dataset.filter; cards.forEach(card=>{ const tags=card.dataset.tags.split(' '); card.style.display=(tag==='all'||tags.includes(tag))?'':'none'; }); }));
+    // Load and render updates from JSON
+    async function loadUpdates() {
+      try {
+        const response = await fetch('data/updates.json');
+        const data = await response.json();
+        const container = document.getElementById('timeline-container');
+        
+        container.innerHTML = data.updates.map(update => {
+          const date = new Date(update.date);
+          const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          return `<li><time datetime="${update.date}">${formatted}</time> ${update.text}</li>`;
+        }).join('');
+      } catch (err) {
+        console.error('Failed to load updates:', err);
+      }
+    }
 
-    // Canvas FX
-    const canvas=document.getElementById('bgfx'); const ctx=canvas.getContext('2d'); let w,h,dpr; function resize(){ dpr=Math.min(devicePixelRatio||1,2); w=canvas.width=Math.floor(innerWidth*dpr); h=canvas.height=Math.floor(innerHeight*dpr); canvas.style.width=innerWidth+'px'; canvas.style.height=innerHeight+'px'; } resize(); addEventListener('resize',resize);
-    const N=42,SPEED=0.08; const prefersReduced=matchMedia('(prefers-reduced-motion: reduce)').matches; let nodes=Array.from({length:N},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()*2-1)*SPEED*dpr,vy:(Math.random()*2-1)*SPEED*dpr})); function tick(){ ctx.clearRect(0,0,w,h); const g=ctx.createRadialGradient(w*.25,h*.25,0,w*.25,h*.25,Math.max(w,h)*.8); g.addColorStop(0,'rgba(40,70,120,.25)'); g.addColorStop(1,'rgba(0,0,0,0)'); ctx.fillStyle=g; ctx.fillRect(0,0,w,h); const TH=180*dpr; for(let i=0;i<N;i++){const a=nodes[i]; for(let j=i+1;j<N;j++){const b=nodes[j]; const d=Math.hypot(a.x-b.x,a.y-b.y); if(d<TH){const a1=1-d/TH; ctx.strokeStyle=`rgba(84,197,255,${.12*a1})`; ctx.lineWidth=1*dpr; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo((a.x+b.x)/2,a.y); ctx.lineTo((a.x+b.x)/2,b.y); ctx.lineTo(b.x,b.y); ctx.stroke();}}} for(const n of nodes){ ctx.fillStyle='rgba(167,139,250,.7)'; ctx.beginPath(); ctx.arc(n.x,n.y,1.6*dpr,0,Math.PI*2); ctx.fill(); if(!prefersReduced){ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>w) n.vx*=-1; if(n.y<0||n.y>h) n.vy*=-1; }} if(!prefersReduced) requestAnimationFrame(tick);} if(prefersReduced){tick();} else {requestAnimationFrame(tick);} 
+    // Load and render projects from JSON
+    async function loadProjects() {
+      try {
+        const response = await fetch('data/projects.json');
+        const data = await response.json();
+        const container = document.getElementById('projects-container');
+        const filtersContainer = document.getElementById('project-filters');
+        
+        // Get unique tags and create filter buttons
+        const allTags = new Set();
+        data.projects.forEach(p => p.tags.forEach(t => allTags.add(t)));
+        
+        const tagLabels = {
+          'programming': 'Programming',
+          'complexity': 'Complexity Theory',
+          'quantum': 'Quantum Computing',
+          'algorithms': 'Algorithms'
+        };
+        
+        // Add filter buttons for each tag
+        allTags.forEach(tag => {
+          const btn = document.createElement('button');
+          btn.className = 'chip';
+          btn.dataset.filter = tag;
+          btn.setAttribute('aria-pressed', 'false');
+          btn.textContent = tagLabels[tag] || tag;
+          filtersContainer.appendChild(btn);
+        });
+        
+        // Render projects
+        container.innerHTML = data.projects.map(project => {
+          const tagsAttr = project.tags.join(' ');
+          const linkHtml = project.link ? `<div class="links"><a href="${project.link}">${project.linkText || 'Learn more →'}</a></div>` : '';
+          return `
+            <article class="project card lift" data-tags="${tagsAttr}">
+              <h3>${project.title}</h3>
+              <p>${project.description}</p>
+              ${linkHtml}
+            </article>
+          `;
+        }).join('');
+        
+        // Setup filter functionality
+        setupFilters();
+      } catch (err) {
+        console.error('Failed to load projects:', err);
+      }
+    }
+
+    function setupFilters() {
+      const chips = document.querySelectorAll('.filters .chip');
+      const cards = document.querySelectorAll('.project-grid .project');
+      chips.forEach(ch => ch.addEventListener('click', () => {
+        chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+        ch.setAttribute('aria-pressed', 'true');
+        const tag = ch.dataset.filter;
+        cards.forEach(card => {
+          const tags = (card.dataset.tags || '').split(' ');
+          card.style.display = (tag === 'all' || tags.includes(tag)) ? '' : 'none';
+        });
+      }));
+    }
+
+    // Load content
+    loadUpdates();
+    loadProjects();
+
+    // Canvas background
+    const canvas = document.getElementById('bgfx');
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    
+    function resize() {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      w = canvas.width = Math.floor(innerWidth * dpr);
+      h = canvas.height = Math.floor(innerHeight * dpr);
+      canvas.style.width = innerWidth + 'px';
+      canvas.style.height = innerHeight + 'px';
+    }
+    resize();
+    addEventListener('resize', resize);
+    
+    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const N = 40;
+    const SPEED = 0.05;
+    const nodes = Array.from({ length: N }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() * 2 - 1) * SPEED * dpr,
+      vy: (Math.random() * 2 - 1) * SPEED * dpr,
+      phase: Math.random() * Math.PI * 2,
+      freq: 0.005 + Math.random() * 0.01
+    }));
+    
+    let time = 0;
+    
+    function tick() {
+      ctx.clearRect(0, 0, w, h);
+      
+      const g1 = ctx.createRadialGradient(w * 0.15, h * 0.15, 0, w * 0.15, h * 0.15, Math.max(w, h) * 0.6);
+      g1.addColorStop(0, 'rgba(30, 70, 110, 0.12)');
+      g1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = g1;
+      ctx.fillRect(0, 0, w, h);
+      
+      const TH = 180 * dpr;
+      
+      for (let i = 0; i < N; i++) {
+        const a = nodes[i];
+        for (let j = i + 1; j < N; j++) {
+          const b = nodes[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < TH) {
+            const alpha = (1 - d / TH) * 0.12;
+            ctx.strokeStyle = `rgba(90, 228, 255, ${alpha})`;
+            ctx.lineWidth = 1 * dpr;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      
+      for (const n of nodes) {
+        const pulse = Math.sin(time * n.freq + n.phase) * 0.3 + 0.7;
+        ctx.fillStyle = `rgba(167, 139, 250, ${0.5 + pulse * 0.3})`;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, (1.5 + pulse * 0.5) * dpr, 0, Math.PI * 2);
+        ctx.fill();
+        
+        if (!prefersReduced) {
+          n.x += n.vx;
+          n.y += n.vy;
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+        }
+      }
+      
+      time++;
+      if (!prefersReduced) requestAnimationFrame(tick);
+    }
+    
+    if (prefersReduced) tick();
+    else requestAnimationFrame(tick);
   </script>
 </body>
 </html>

@@ -3,22 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Stelios Prentakis Website</title>
+  <title>Stelios Prentakis — Theoretical CS & Quantum Computing</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Comfortaa:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Comfortaa:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <meta name="color-scheme" content="dark light" />
-  <meta name="theme-color" content="#0c0f17" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#050608" />
+  <meta name="description" content="Personal website of Stelios Prentakis — undergraduate researcher with interests in theoretical computer science, computational complexity, and quantum computing." />
 </head>
 <body>
+  <canvas id="bgfx" class="bg" aria-hidden="true"></canvas>
+
   <main class="hero">
     <div class="hero-inner">
       <div class="title-row">
         <h1 class="page-title">Stelios Prentakis</h1>
-        <img class="avatar" src="assets/profile.png" alt="My Profile Picture" />
+        <img class="avatar" src="assets/profile.png" alt="Profile photo of Stelios Prentakis" />
       </div>
 
       <p class="subtitle">
@@ -26,20 +29,135 @@
       </p>
 
       <div class="quick-actions">
-        <a href="cv.html" class="card lift navcard">
+        <a href="cv.html" class="navcard">
           <h2>My CV</h2>
-          <p>Academic background and experience, honors and experience.</p>
+          <p>Academic background, research experience, and achievements.</p>
         </a>
-        <a href="tutoring.html" class="card lift navcard">
+        <a href="tutoring.html" class="navcard">
           <h2>Tutoring Material</h2>
           <p>Notes and exercises for students in Maths and Physics.</p>
         </a>
-        <a href="updates.html" class="card lift navcard">
+        <a href="updates.html" class="navcard">
           <h2>Project Updates</h2>
-          <p>Research and side projects.</p>
+          <p>Research progress and side projects.</p>
         </a>
       </div>
     </div>
   </main>
+
+  <script>
+    // Quantum-inspired background animation
+    const canvas = document.getElementById('bgfx');
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+    
+    function resize() {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      w = canvas.width = Math.floor(innerWidth * dpr);
+      h = canvas.height = Math.floor(innerHeight * dpr);
+      canvas.style.width = innerWidth + 'px';
+      canvas.style.height = innerHeight + 'px';
+    }
+    resize();
+    addEventListener('resize', resize);
+    
+    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Quantum nodes
+    const N = 50;
+    const SPEED = 0.06;
+    const nodes = Array.from({ length: N }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() * 2 - 1) * SPEED * dpr,
+      vy: (Math.random() * 2 - 1) * SPEED * dpr,
+      phase: Math.random() * Math.PI * 2,
+      freq: 0.005 + Math.random() * 0.01
+    }));
+    
+    let time = 0;
+    
+    function tick() {
+      ctx.clearRect(0, 0, w, h);
+      
+      // Background gradient
+      const g1 = ctx.createRadialGradient(w * 0.2, h * 0.2, 0, w * 0.2, h * 0.2, Math.max(w, h) * 0.7);
+      g1.addColorStop(0, 'rgba(30, 70, 110, 0.15)');
+      g1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = g1;
+      ctx.fillRect(0, 0, w, h);
+      
+      const g2 = ctx.createRadialGradient(w * 0.8, h * 0.7, 0, w * 0.8, h * 0.7, Math.max(w, h) * 0.6);
+      g2.addColorStop(0, 'rgba(100, 60, 130, 0.1)');
+      g2.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = g2;
+      ctx.fillRect(0, 0, w, h);
+      
+      const TH = 200 * dpr;
+      
+      // Draw connections (quantum entanglement lines)
+      for (let i = 0; i < N; i++) {
+        const a = nodes[i];
+        for (let j = i + 1; j < N; j++) {
+          const b = nodes[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < TH) {
+            const alpha = (1 - d / TH) * 0.15;
+            const wave = Math.sin(time * 0.02 + a.phase + b.phase) * 0.5 + 0.5;
+            
+            // Gradient line
+            const gradient = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+            gradient.addColorStop(0, `rgba(90, 228, 255, ${alpha * (0.5 + wave * 0.5)})`);
+            gradient.addColorStop(0.5, `rgba(167, 139, 250, ${alpha})`);
+            gradient.addColorStop(1, `rgba(34, 211, 187, ${alpha * (0.5 + wave * 0.5)})`);
+            
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 1 * dpr;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      
+      // Draw nodes (quantum particles)
+      for (const n of nodes) {
+        const pulse = Math.sin(time * n.freq + n.phase) * 0.3 + 0.7;
+        const size = (1.5 + pulse) * dpr;
+        
+        // Glow
+        const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, size * 4);
+        glow.addColorStop(0, `rgba(167, 139, 250, ${0.3 * pulse})`);
+        glow.addColorStop(1, 'rgba(167, 139, 250, 0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, size * 4, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Core
+        ctx.fillStyle = `rgba(90, 228, 255, ${0.7 + pulse * 0.3})`;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        if (!prefersReduced) {
+          n.x += n.vx;
+          n.y += n.vy;
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+        }
+      }
+      
+      time++;
+      if (!prefersReduced) requestAnimationFrame(tick);
+    }
+    
+    if (prefersReduced) {
+      tick();
+    } else {
+      requestAnimationFrame(tick);
+    }
+  </script>
 </body>
 </html>

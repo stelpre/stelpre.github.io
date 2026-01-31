@@ -1,0 +1,18 @@
+{
+  "projects": [
+    {
+      "title": "Personal Website",
+      "description": "A modern academic portfolio showcasing my background, teaching materials, and research projects.",
+      "tags": ["programming"],
+      "link": "https://stelpre.github.io/",
+      "linkText": "View Live →"
+    },
+    {
+      "title": "Randomized Decision Tree Complexity",
+      "description": "Research on finding improved lower bounds for the randomized decision tree complexity of T-majority decision trees. Supervised by Prof. Nikos Leonardos.",
+      "tags": ["complexity"],
+      "link": "",
+      "linkText": ""
+    }
+  ]
+}

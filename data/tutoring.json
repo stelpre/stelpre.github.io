@@ -1,0 +1,142 @@
+{
+  "sections": [
+    {
+      "id": "protypa",
+      "title": "Εισαγωγή σε Πρότυπα Γυμνάσια",
+      "hasFilters": false,
+      "materials": [
+        {
+          "title": "Διαγώνισμα Προσομοίωσης εφ όλης της ύλης",
+          "link": "https://stelpre.github.io/teaching/mp_exam_XX.pdf",
+          "tags": []
+        },
+        {
+          "title": "Ασκήσεις στο Κεφάλαιο Αριθμοί και Πράξεις",
+          "link": "https://stelpre.github.io/teaching/mp_excol_1X.pdf",
+          "tags": []
+        },
+        {
+          "title": "Ασκήσεις στο Κεφάλαιο Εξισώσεις",
+          "link": "https://stelpre.github.io/teaching/mp_excol_2X.pdf",
+          "tags": []
+        },
+        {
+          "title": "Επαναληπτικές Ασκήσεις - Συνδυαστικά Θέματα",
+          "link": "https://stelpre.github.io/teaching/mp_review_XX.pdf",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "gymnasio",
+      "title": "Υλικό για Γυμνάσιο",
+      "hasFilters": true,
+      "filterOptions": [
+        {"value": "all", "label": "All"},
+        {"value": "a", "label": "Α Γυμνασίου"},
+        {"value": "b", "label": "Β Γυμνασίου"},
+        {"value": "c", "label": "Γ Γυμνασίου"}
+      ],
+      "materials": [
+        {
+          "title": "[Φυσική Β Γυμνασίου] Συλλογή Ασκήσεων στο Κεφάλαιο 5 - Έργο",
+          "link": "https://stelpre.github.io/teaching/fgb_excol_5.pdf",
+          "tags": ["b"]
+        },
+        {
+          "title": "[Φυσική Γ Γυμνασίου] Συλλογή Ασκήσεων στο Κεφάλαιο 1 - Ηλεκτρισμός και Νόμος του Coulomb (I)",
+          "link": "https://stelpre.github.io/teaching/fgc_excol_1_1.pdf",
+          "tags": ["c"]
+        },
+        {
+          "title": "[Φυσική Γ Γυμνασίου] Συλλογή Ασκήσεων στο Κεφάλαιο 1 - Ηλεκτρισμός και Νόμος του Coulomb (II)",
+          "link": "https://stelpre.github.io/teaching/fgc_excol_1_2.pdf",
+          "tags": ["c"]
+        },
+        {
+          "title": "[Μαθηματικά Α Γυμνασίου] Διαγώνισμα στο Κεφάλαιο 2 - Ρητοί αριθμοί και Κλάσματα",
+          "link": "https://stelpre.github.io/teaching/mga_exam_2X.pdf",
+          "tags": ["a"]
+        },
+        {
+          "title": "[Μαθηματικά Α Γυμνασίου] Ασκήσεις σχολικού βιβλίου στις παραγράφους 1.1 - 1.3",
+          "link": "https://stelpre.github.io/teaching/mga_exbook_1X_1.pdf",
+          "tags": ["a"]
+        },
+        {
+          "title": "[Μαθηματικά Α Γυμνασίου] Ασκήσεις σχολικού βιβλίου στις παραγράφους 1.4 - 1.5",
+          "link": "https://stelpre.github.io/teaching/mga_exbook_1X_2.pdf",
+          "tags": ["a"]
+        },
+        {
+          "title": "[Μαθηματικά Α Γυμνασίου] Συλλογή Ασκήσεων στο Κεφάλαιο 2 - Κλάσματα",
+          "link": "https://stelpre.github.io/teaching/mga_excol_2.pdf",
+          "tags": ["a"]
+        },
+        {
+          "title": "[Μαθηματικά Γ Γυμνασίου] Επαναληπτικό φυλλάδιο για το Κεφάλαιο 1",
+          "link": "https://stelpre.github.io/teaching/mgc_exam_1X.pdf",
+          "tags": ["c"]
+        },
+        {
+          "title": "[Μαθηματικά Γ Γυμνασίου] Συλλογή Ασκήσεων στην Παράγραφο 1.1 - Πραγματικοί Αριθμοί",
+          "link": "https://stelpre.github.io/teaching/mgc_kexcol_11.pdf",
+          "tags": ["c"]
+        },
+        {
+          "title": "[Μαθηματικά Γ Γυμνασίου] Συλλογή Ασκήσεων στο Παράγραφο 1.6 - Παραγοντοποίηση",
+          "link": "https://stelpre.github.io/teaching/mgc_kexcol_16.pdf",
+          "tags": ["c"]
+        },
+        {
+          "title": "[Μαθηματικά Γ Γυμνασίου] Επαναλητπικό Φυλλάδιο εφ όλης της ύλης",
+          "link": "https://stelpre.github.io/teaching/mgc_review_XX.pdf",
+          "tags": ["c"]
+        }
+      ]
+    },
+    {
+      "id": "lykeio",
+      "title": "Υλικό για Λύκειο",
+      "hasFilters": true,
+      "filterOptions": [
+        {"value": "all", "label": "All"},
+        {"value": "a", "label": "Α Λυκείου"},
+        {"value": "b", "label": "Β Λυκείου"},
+        {"value": "c", "label": "Γ Λυκείου"}
+      ],
+      "materials": [
+        {
+          "title": "[Μαθηματικά Α Λυκείου] Διαγώνισμα στην Παράγραφο 2.2 - Διάταξη Πραγματικών Αριθμών",
+          "link": "https://stelpre.github.io/teaching/mla_exam_22.pdf",
+          "tags": ["a"]
+        },
+        {
+          "title": "[Μαθηματικά Α Λυκείου] Συλλογή Ασκήσεων στην Παράγραφο 2.2 - Διάταξη Πραγματικών Αριθμών",
+          "link": "https://stelpre.github.io/teaching/mla_exbook_22.pdf",
+          "tags": ["a"]
+        },
+        {
+          "title": "[Μαθηματικά Α Λυκείου] Συλλογή Ασκήσεων στην Παράγραφο 2.3 - Απόλυτη Τιμή Πραγματικού Αριθμού",
+          "link": "https://stelpre.github.io/teaching/mla_exbook_23.pdf",
+          "tags": ["a"]
+        },
+        {
+          "title": "[Μαθηματικά Α Λυκείου] Συλλογή Ασκήσεων στην Παράγραφο Ε.2 - Σύνολα",
+          "link": "https://stelpre.github.io/teaching/mla_excol_02.pdf",
+          "tags": ["a"]
+        },
+        {
+          "title": "[Μαθηματικά Α Λυκείου] Συλλογή Ασκήσεων στην Παράγραφο 2.4 - Ρίζες Πραγματικών Αριθμών",
+          "link": "https://stelpre.github.io/teaching/mla_excol_24.pdf",
+          "tags": ["a"]
+        },
+        {
+          "title": "[Μαθηματικά Α Λυκείου] Συλλογή Ασκήσεων στην Παράγραφο 2.1 - Οι Πράξεις και οι Ιδιότητές τους",
+          "link": "https://stelpre.github.io/teaching/mla_kexcol_21.pdf",
+          "tags": ["a"]
+        }
+      ]
+    }
+  ]
+}

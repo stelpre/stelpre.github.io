@@ -1,0 +1,84 @@
+{
+  "about": "Undergraduate ECE student at the National Technical University of Athens. Focus on algorithms, complexity, and quantum computing. Experienced in C++ and MATLAB with strong mathematics and programming background. Active member of the IEEE NTUA Student Branch Computer Society. Aspiring to pursue an academic research career in quantum algorithms and computational complexity.",
+  "cvPdfUrl": "assets/autoCV.pdf",
+  "contacts": [
+    {
+      "label": "📧 Email",
+      "url": "mailto:prentakistelios@gmail.com"
+    },
+    {
+      "label": "💻 GitHub",
+      "url": "https://github.com/stelpre"
+    },
+    {
+      "label": "🔗 LinkedIn",
+      "url": "https://linkedin.com/in/stylianos-prentakis"
+    }
+  ],
+  "sections": [
+    {
+      "id": "education",
+      "title": "Education",
+      "icon": "🎓",
+      "items": [
+        {
+          "title": "National Technical University of Athens",
+          "subtitle": "B.Sc. in Electrical and Computer Engineering",
+          "date": "2022 - Present",
+          "description": "Focus on algorithms, complexity theory, and quantum computing.",
+          "details": []
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "title": "Research Experience",
+      "icon": "🔬",
+      "items": [
+        {
+          "title": "Randomized Decision Tree Complexity",
+          "subtitle": "Supervised by Prof. Nikos Leonardos",
+          "date": "2025 - Present",
+          "description": "Research on lower bounds for randomized decision tree complexity of T-majority decision trees.",
+          "details": []
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "title": "Skills",
+      "icon": "💡",
+      "items": [
+        {
+          "title": "Programming Languages",
+          "subtitle": "",
+          "date": "",
+          "description": "C++, Python, MATLAB, JavaScript",
+          "details": []
+        },
+        {
+          "title": "Areas of Interest",
+          "subtitle": "",
+          "date": "",
+          "description": "Algorithms, Computational Complexity, Quantum Computing",
+          "details": []
+        }
+      ]
+    },
+    {
+      "id": "activities",
+      "title": "Activities & Organizations",
+      "icon": "🏛️",
+      "items": [
+        {
+          "title": "IEEE NTUA Student Branch",
+          "subtitle": "Computer Society Member",
+          "date": "",
+          "description": "Active member contributing to technical events and workshops.",
+          "details": []
+        }
+      ]
+    }
+  ]
+}
+
