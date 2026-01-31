@@ -2,7 +2,6 @@ backend:
   name: github
   repo: stelpre/stelpre.github.io
   branch: main
-  base_url: https://decap-oauth.netlify.app
 
 # Media files
 media_folder: "assets"
