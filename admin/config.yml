@@ -2,8 +2,7 @@ backend:
   name: github
   repo: stelpre/stelpre.github.io
   branch: main
-  auth_type: pkce
-  app_id: Ov23liK3gCgk8meC63tM
+  base_url: https://stelpre-oauth.netlify.app
 
 media_folder: "assets"
 public_folder: "/assets"
