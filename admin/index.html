@@ -10,31 +10,6 @@
   </style>
 </head>
 <body>
-  <script>
-    (function() {
-      // Step 1: Check if we're returning from OAuth with a token
-      var params = new URLSearchParams(window.location.search);
-      var token = params.get('auth_token');
-      if (token) {
-        // Store the token and redirect to clean URL — do NOT load CMS yet
-        document.body.innerHTML = '<p>Logging in...</p>';
-        localStorage.setItem('decap-cms-user', JSON.stringify({
-          token: token,
-          name: '',
-          login: '',
-          avatar_url: '',
-          backendName: 'github'
-        }));
-        // Redirect to clean URL (CMS will load there and find the token)
-        window.location.replace(window.location.pathname);
-        return;
-      }
-
-      // Step 2: No token in URL — load Decap CMS normally
-      var script = document.createElement('script');
-      script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
-      document.body.appendChild(script);
-    })();
-  </script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
