@@ -9,29 +9,34 @@
     body { margin: 0; }
   </style>
   <script>window.CMS_MANUAL_INIT = true;</script>
-  <script src="https://unpkg.com/localforage@1.10.0/dist/localforage.min.js"></script>
 </head>
 <body>
   <script>
-    // Handle redirect-based OAuth: if we have a token in the hash,
-    // store it via localForage (same storage Decap CMS uses internally)
     (function() {
+      // Check if we're returning from OAuth with a token in the hash
       var hash = window.location.hash;
       if (hash && hash.indexOf('#token=') === 0) {
         var token = hash.substring(7);
-        document.body.innerHTML = '<p>Logging in...</p>';
-        // Decap CMS stores user under 'netlify-cms-user' via localForage (IndexedDB)
-        localforage.setItem('netlify-cms-user', {
-          token: token,
-          backendName: 'github'
-        }).then(function() {
-          // Clean URL and reload so CMS picks up the stored token
-          window.location.replace(window.location.pathname);
-        });
-        return; // Don't load CMS yet
+
+        // We're in the OAuth popup, redirected here from the callback.
+        // Since we're now same-origin as the opener (main admin window),
+        // window.opener is accessible. Send the token via postMessage.
+        if (window.opener) {
+          var msg = 'authorization:github:success:' + JSON.stringify({token: token, provider: 'github'});
+          window.opener.postMessage(msg, window.location.origin);
+          document.body.innerHTML = '<p>Login successful! This window will close.</p>';
+          setTimeout(function() { window.close(); }, 500);
+          return;
+        }
+
+        // Fallback: not in a popup (direct redirect flow).
+        // Store token and reload; CMS doesn't natively support this,
+        // so show a simple message.
+        document.body.innerHTML = '<p>Login failed. Please try again allowing popups for this site.</p>';
+        return;
       }
 
-      // No token in hash — load CMS normally
+      // Normal load — load Decap CMS
       var script = document.createElement('script');
       script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
       script.onload = function() {
