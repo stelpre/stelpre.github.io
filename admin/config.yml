@@ -2,6 +2,8 @@ backend:
   name: github
   repo: stelpre/stelpre.github.io
   branch: main
+  auth_type: pkce
+  app_id: YOUR_GITHUB_OAUTH_APP_CLIENT_ID  # Replace with your OAuth App client ID
 
 # Media files
 media_folder: "assets"
