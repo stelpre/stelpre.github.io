@@ -11,6 +11,25 @@
   <script>window.CMS_MANUAL_INIT = true;</script>
 </head>
 <body>
+  <script>
+    // Handle redirect-based OAuth: if we have a token in the hash, simulate
+    // the postMessage that Decap CMS's popup flow normally provides
+    (function() {
+      var hash = window.location.hash;
+      if (hash && hash.indexOf('#token=') === 0) {
+        var token = hash.substring(7);
+        // Store token for CMS to find
+        localStorage.setItem('netlify-cms-user', JSON.stringify({
+          token: token,
+          name: '',
+          avatar_url: '',
+          backendName: 'github'
+        }));
+        // Clean URL and reload
+        history.replaceState(null, '', window.location.pathname);
+      }
+    })();
+  </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
     window.addEventListener('load', function () {
