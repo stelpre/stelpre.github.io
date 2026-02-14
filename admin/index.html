@@ -8,8 +8,127 @@
   <style>
     body { margin: 0; }
   </style>
+  <script>window.CMS_MANUAL_INIT = true;</script>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      window.CMS.init({
+        config: {
+          load_config_file: false,
+          backend: {
+            name: 'github',
+            repo: 'stelpre/stelpre.github.io',
+            branch: 'main',
+            auth_type: 'pkce',
+            app_id: 'Ov23liK3gCgk8meC63tM'
+          },
+          media_folder: 'assets',
+          public_folder: '/assets',
+          site_url: 'https://stelpre.github.io',
+          display_url: 'https://stelpre.github.io',
+          collections: [
+            {
+              name: 'updates',
+              label: 'Updates & Timeline',
+              files: [{
+                name: 'updates_file',
+                label: 'Updates Data',
+                file: 'data/updates.json',
+                fields: [{
+                  name: 'updates', label: 'Updates', widget: 'list',
+                  summary: '{{fields.date}} - {{fields.text}}',
+                  fields: [
+                    { name: 'date', label: 'Date', widget: 'datetime', format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false },
+                    { name: 'text', label: 'Description', widget: 'string' }
+                  ]
+                }]
+              }]
+            },
+            {
+              name: 'projects',
+              label: 'Projects',
+              files: [{
+                name: 'projects_file',
+                label: 'Projects Data',
+                file: 'data/projects.json',
+                fields: [{
+                  name: 'projects', label: 'Projects', widget: 'list',
+                  summary: '{{fields.title}}',
+                  fields: [
+                    { name: 'title', label: 'Title', widget: 'string' },
+                    { name: 'description', label: 'Description', widget: 'text' },
+                    { name: 'tags', label: 'Tags', widget: 'select', multiple: true, options: [
+                      { label: 'Programming', value: 'programming' },
+                      { label: 'Complexity Theory', value: 'complexity' },
+                      { label: 'Quantum Computing', value: 'quantum' },
+                      { label: 'Algorithms', value: 'algorithms' }
+                    ]},
+                    { name: 'link', label: 'Link URL (optional)', widget: 'string', required: false },
+                    { name: 'linkText', label: 'Link Text (optional)', widget: 'string', required: false }
+                  ]
+                }]
+              }]
+            },
+            {
+              name: 'cv',
+              label: 'CV & About',
+              files: [{
+                name: 'cv_file',
+                label: 'CV Data',
+                file: 'data/cv.json',
+                fields: [
+                  { name: 'about', label: 'About Text', widget: 'text' },
+                  { name: 'cvPdfUrl', label: 'CV PDF URL', widget: 'string', default: 'assets/autoCV.pdf' },
+                  { name: 'contacts', label: 'Contact Links', widget: 'list', summary: '{{fields.label}}', fields: [
+                    { name: 'label', label: 'Label (with emoji)', widget: 'string' },
+                    { name: 'url', label: 'URL', widget: 'string' }
+                  ]},
+                  { name: 'sections', label: 'CV Sections', widget: 'list', summary: '{{fields.icon}} {{fields.title}}', fields: [
+                    { name: 'id', label: 'Section ID', widget: 'string' },
+                    { name: 'title', label: 'Section Title', widget: 'string' },
+                    { name: 'icon', label: 'Icon (emoji)', widget: 'string', required: false },
+                    { name: 'items', label: 'Items', widget: 'list', summary: '{{fields.title}}', fields: [
+                      { name: 'title', label: 'Title', widget: 'string' },
+                      { name: 'subtitle', label: 'Subtitle', widget: 'string', required: false },
+                      { name: 'date', label: 'Date/Period', widget: 'string', required: false },
+                      { name: 'description', label: 'Description', widget: 'text', required: false },
+                      { name: 'details', label: 'Bullet Points', widget: 'list', required: false, field: { name: 'detail', label: 'Detail', widget: 'string' }}
+                    ]}
+                  ]}
+                ]
+              }]
+            },
+            {
+              name: 'tutoring',
+              label: 'Tutoring Materials',
+              files: [{
+                name: 'tutoring_file',
+                label: 'Tutoring Data',
+                file: 'data/tutoring.json',
+                fields: [{
+                  name: 'sections', label: 'Sections', widget: 'list', summary: '{{fields.title}}', fields: [
+                    { name: 'id', label: 'Section ID', widget: 'string' },
+                    { name: 'title', label: 'Section Title', widget: 'string' },
+                    { name: 'hasFilters', label: 'Show Filter Buttons?', widget: 'boolean', default: false },
+                    { name: 'filterOptions', label: 'Filter Options', widget: 'list', required: false, summary: '{{fields.label}}', fields: [
+                      { name: 'value', label: 'Filter Value', widget: 'string' },
+                      { name: 'label', label: 'Display Label', widget: 'string' }
+                    ]},
+                    { name: 'materials', label: 'Materials', widget: 'list', summary: '{{fields.title}}', fields: [
+                      { name: 'title', label: 'Title', widget: 'string' },
+                      { name: 'link', label: 'PDF Link', widget: 'string' },
+                      { name: 'tags', label: 'Filter Tags', widget: 'list', required: false, field: { name: 'tag', label: 'Tag', widget: 'string' }}
+                    ]}
+                  ]
+                }]
+              }]
+            }
+          ]
+        }
+      });
+    });
+  </script>
 </body>
 </html>
