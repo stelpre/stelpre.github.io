@@ -13,16 +13,22 @@
   <script>
     // Handle OAuth redirect fallback (when popup is blocked by browser)
     (function() {
-      var hash = window.location.hash.substring(1);
-      if (hash) {
-        var params = new URLSearchParams(hash);
-        var token = params.get('access_token');
-        if (token) {
-          localStorage.setItem('decap-cms-user', JSON.stringify({ token: token }));
-          history.replaceState(null, '', window.location.pathname);
-          location.reload();
-          return;
-        }
+      var params = new URLSearchParams(window.location.search);
+      var token = params.get('auth_token');
+      if (token) {
+        // Clean the URL immediately
+        history.replaceState(null, '', window.location.pathname);
+        // Wait for Decap CMS to load, then send it the token via postMessage
+        // (same format as the popup would send)
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            var payload = JSON.stringify({ token: token, provider: 'github' });
+            window.postMessage(
+              'authorization:github:success:' + payload,
+              window.location.origin
+            );
+          }, 1000);
+        });
       }
     })();
   </script>
