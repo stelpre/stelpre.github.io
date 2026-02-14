@@ -10,6 +10,22 @@
   </style>
 </head>
 <body>
+  <script>
+    // Handle OAuth redirect fallback (when popup is blocked by browser)
+    (function() {
+      var hash = window.location.hash.substring(1);
+      if (hash) {
+        var params = new URLSearchParams(hash);
+        var token = params.get('access_token');
+        if (token) {
+          localStorage.setItem('netlify-cms-user', JSON.stringify({ token: token }));
+          history.replaceState(null, '', window.location.pathname);
+          location.reload();
+          return;
+        }
+      }
+    })();
+  </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
