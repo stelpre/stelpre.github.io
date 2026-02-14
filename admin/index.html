@@ -18,7 +18,7 @@
         var params = new URLSearchParams(hash);
         var token = params.get('access_token');
         if (token) {
-          localStorage.setItem('netlify-cms-user', JSON.stringify({ token: token }));
+          localStorage.setItem('decap-cms-user', JSON.stringify({ token: token }));
           history.replaceState(null, '', window.location.pathname);
           location.reload();
           return;
