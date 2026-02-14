@@ -9,31 +9,33 @@
     body { margin: 0; }
   </style>
   <script>window.CMS_MANUAL_INIT = true;</script>
+  <script src="https://unpkg.com/localforage@1.10.0/dist/localforage.min.js"></script>
 </head>
 <body>
   <script>
-    // Handle redirect-based OAuth: if we have a token in the hash, simulate
-    // the postMessage that Decap CMS's popup flow normally provides
+    // Handle redirect-based OAuth: if we have a token in the hash,
+    // store it via localForage (same storage Decap CMS uses internally)
     (function() {
       var hash = window.location.hash;
       if (hash && hash.indexOf('#token=') === 0) {
         var token = hash.substring(7);
-        // Store token for CMS to find
-        localStorage.setItem('netlify-cms-user', JSON.stringify({
+        document.body.innerHTML = '<p>Logging in...</p>';
+        // Decap CMS stores user under 'netlify-cms-user' via localForage (IndexedDB)
+        localforage.setItem('netlify-cms-user', {
           token: token,
-          name: '',
-          avatar_url: '',
           backendName: 'github'
-        }));
-        // Clean URL and reload
-        history.replaceState(null, '', window.location.pathname);
+        }).then(function() {
+          // Clean URL and reload so CMS picks up the stored token
+          window.location.replace(window.location.pathname);
+        });
+        return; // Don't load CMS yet
       }
-    })();
-  </script>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script>
-    window.addEventListener('load', function () {
-      window.CMS.init({
+
+      // No token in hash — load CMS normally
+      var script = document.createElement('script');
+      script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+      script.onload = function() {
+        window.CMS.init({
         config: {
           load_config_file: false,
           backend: {
@@ -119,7 +121,9 @@
           ]
         }
       });
-    });
+      };
+      document.body.appendChild(script);
+    })();
   </script>
 </body>
 </html>
