@@ -1,18 +1,39 @@
 {
-  "projects": [
+  "selectedProjects": [
     {
-      "title": "Personal Website",
-      "description": "A modern academic portfolio showcasing my background, teaching materials, and research projects.",
-      "tags": ["programming"],
-      "link": "https://stelpre.github.io/",
-      "linkText": "View Live →"
-    },
-    {
-      "title": "Randomized Decision Tree Complexity",
-      "description": "Research on finding improved lower bounds for the randomized decision tree complexity of T-majority decision trees. Supervised by Prof. Nikos Leonardos.",
-      "tags": ["complexity"],
-      "link": "",
-      "linkText": ""
+      "id": "projects",
+      "title": "Selected Projects",
+      "icon": "💼",
+      "items": [
+        {
+          "title": "Personal Website",
+          "subtitle": "",
+          "date": "",
+          "description": "A modern academic portfolio showcasing my background, teaching materials, and research projects.",
+          "details": []
+        },
+        {
+          "title": "Randomized Decision Tree Complexity",
+          "subtitle": "",
+          "date": "",
+          "description": "Research on finding improved lower bounds for the randomized decision tree complexity of T-majority decision trees. Supervised by Prof. Nikos Leonardos.",
+          "details": []
+        },
+        {
+          "title": "Woundy: 3D Wound Scanning & Assessment Device",
+          "subtitle": "",
+          "date": "Spring 2025 – Present",
+          "description": "Developing a biomedical device for automated 3D wound imaging and volumetric reconstruction.\nDesigned algorithms for sensor data denoising and 3D surface reconstruction to enable automated clinical assessment.\nLeading the software implementation and integration of the imaging prototype.",
+          "details": []
+        },
+        {
+          "title": "EEG Denoising and Classification",
+          "subtitle": "",
+          "date": "Fall 2025 – Present",
+          "description": "Coordinated a small team of peers to develop a custom biosignal analysis framework.\nDesigned the Machine Learning pipeline architecture, focusing on signal denoising and artifact removal for raw EEG data.",
+          "details": []
+        }
+      ]
     }
   ]
 }
