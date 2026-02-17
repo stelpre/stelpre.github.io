@@ -23,9 +23,9 @@
       "items": [
         {
           "title": "National Technical University of Athens",
-          "subtitle": "B.Sc. in Electrical and Computer Engineering",
-          "date": "2022 - Present",
-          "description": "Focus on algorithms, complexity theory, and quantum computing.",
+          "subtitle": "Diploma in Electrical and Computer Engineering (Integrated Master’s)",
+          "date": "Oct. 2022 – July 2027 (exp.)",
+          "description": "Minors: Computer Software, Computer Systems, Bioengineering\nSelected Coursework: Algorithms & Complexity, Fundamentals of Computer Science, Quantum Mechanics, Computer Programming",
           "details": []
         }
       ]
@@ -36,45 +36,122 @@
       "icon": "🔬",
       "items": [
         {
-          "title": "Randomized Decision Tree Complexity",
-          "subtitle": "Supervised by Prof. Nikos Leonardos",
-          "date": "2025 - Present",
-          "description": "Research on lower bounds for randomized decision tree complexity of T-majority decision trees.",
+          "title": "Research on Decision Tree and Quantum Query Complexity",
+          "subtitle": "Advisor: Prof. Leonardos • National Technical University of Athens",
+          "date": "Summer 2025 – Present",
+          "description": "Investigating the randomized query complexity of decision trees utilizing k-threshold gates.\nCurrently analyzing the complexity of Recursive Majority functions.",
           "details": []
         }
       ]
     },
     {
-      "id": "skills",
-      "title": "Skills",
-      "icon": "💡",
+      "id": "teaching",
+      "title": "Teaching Experience",
+      "icon": "👨‍🏫",
       "items": [
         {
-          "title": "Programming Languages",
-          "subtitle": "",
-          "date": "",
-          "description": "C++, Python, MATLAB, JavaScript",
+          "title": "Laboratory Teaching Assistant: Computer Programming",
+          "subtitle": "National Technical University of Athens (NTUA)",
+          "date": "Fall 2025 – Present",
+          "description": "Mentored first year undergraduate students in the fundamentals of computer programming and algorithmic thinking.",
           "details": []
         },
         {
-          "title": "Areas of Interest",
+          "title": "Private Tutor: Mathematics & Physics",
           "subtitle": "",
-          "date": "",
-          "description": "Algorithms, Computational Complexity, Quantum Computing",
+          "date": "Winter 2019 – Present",
+          "description": "Delivered tutoring in Mathematics, Physics and Chemistry for students aged 12-18.\nAdapted complex concepts into accessible lessons to improve student performance in standardized exams.",
           "details": []
         }
       ]
     },
     {
-      "id": "activities",
-      "title": "Activities & Organizations",
-      "icon": "🏛️",
+      "id": "projects",
+      "title": "Selected Projects",
+      "icon": "💼",
+      "items": [
+        {
+          "title": "Woundy: 3D Wound Scanning & Assessment Device",
+          "subtitle": "",
+          "date": "Spring 2025 – Present",
+          "description": "Developing a biomedical device for automated 3D wound imaging and volumetric reconstruction.\nDesigned algorithms for sensor data denoising and 3D surface reconstruction to enable automated clinical assessment.\nLeading the software implementation and integration of the imaging prototype.",
+          "details": []
+        },
+        {
+          "title": "EEG Denoising and Classification",
+          "subtitle": "",
+          "date": "Fall 2025 – Present",
+          "description": "Coordinated a small team of peers to develop a custom biosignal analysis framework.\nDesigned the Machine Learning pipeline architecture, focusing on signal denoising and artifact removal for raw EEG data.",
+          "details": []
+        }
+      ]
+    },
+    {
+      "id": "professional_service",
+      "title": "Professional Service & Leadership",
+      "icon": "🤝",
       "items": [
         {
           "title": "IEEE NTUA Student Branch",
-          "subtitle": "Computer Society Member",
-          "date": "",
-          "description": "Active member contributing to technical events and workshops.",
+          "subtitle": "Member, Computer Society, Quantum Computing & Machine Learning Chapter",
+          "date": "Fall 2024 – Present",
+          "description": "Organizing technical workshops and seminars to promote engagement with Machine Learning and Quantum Computing concepts.\nContributing to small scale projects, focusing on the curation of custom datasets and model implementation and the communication of quantum computing concepts to peers.",
+          "details": []
+        }
+      ]
+    },
+    {
+      "id": "achievements",
+      "title": "Achievements",
+      "icon": "🏆",
+      "items": [
+        {
+          "title": "IEEEXtreme 18.0 and 19.0 Programming Competition",
+          "subtitle": "IEEE",
+          "date": "2024, 2025",
+          "description": "",
+          "details": []
+        },
+        {
+          "title": "National Physics Competition Aristotle – Honorable Mention",
+          "subtitle": "NKUA & HPSEE",
+          "date": "2022",
+          "description": "",
+          "details": []
+        },
+        {
+          "title": "35th and 37th National Mathematical Olympiad Archimedes",
+          "subtitle": "Hellenic Mathematical Society",
+          "date": "2018, 2020",
+          "description": "",
+          "details": []
+        },
+        {
+          "title": "30th and 31st Panhellenic Student Competition in Informatics",
+          "subtitle": "Hellenic Society for Informatics",
+          "date": "2018, 2019",
+          "description": "",
+          "details": []
+        },
+        {
+          "title": "2nd Student Conference on Research and Science",
+          "subtitle": "NCSR Demokritos",
+          "date": "2018",
+          "description": "",
+          "details": []
+        },
+        {
+          "title": "National Student Competition in Mathematics – 3rd Prize",
+          "subtitle": "Hellenic Mathematical Society",
+          "date": "2018",
+          "description": "",
+          "details": []
+        },
+        {
+          "title": "Gauss Contest – Top 25% globally",
+          "subtitle": "CEMC, University of Waterloo",
+          "date": "2017",
+          "description": "",
           "details": []
         }
       ]
