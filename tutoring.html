@@ -3,97 +3,67 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tutoring Material — Stelios Prentakis</title>
+  <title>Tutoring Materials — Stelios Prentakis</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#08090c" />
-  <meta name="description" content="Tutoring materials in Mathematics and Physics by Stelios Prentakis for Greek secondary school students." />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="Teaching materials in Mathematics and Physics by Stelios Prentakis" />
 </head>
-
 <body>
-  <canvas id="bgfx" class="bg" aria-hidden="true"></canvas>
-
   <header class="site-header">
-    <a class="brand" href="index.html">Home</a>
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <a class="brand" href="index.html">Stelios Prentakis</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
     <nav class="site-nav" id="site-nav">
+      <a href="index.html">Home</a>
       <a href="cv.html">CV</a>
-      <a href="tutoring.html" aria-current="page">Tutoring Material</a>
-      <a href="updates.html">Project Updates</a>
+      <a href="updates.html">Projects</a>
+      <a href="tutoring.html" aria-current="page">Tutoring</a>
     </nav>
   </header>
 
-  <main id="tutoring-content">
-    <!-- Sections loaded dynamically from data/tutoring.json -->
-  </main>
+  <main id="tutoring-content"></main>
 
   <footer class="site-footer">
     <p>&copy; <span id="year"></span> Stelios Prentakis</p>
   </footer>
 
+  <script src="main.js"></script>
   <script>
-    // Navigation toggle
-    const btn = document.querySelector('.nav-toggle');
-    const nav = document.getElementById('site-nav');
-    if (btn) {
-      btn.addEventListener('click', () => {
-        const open = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!open));
-        nav.classList.toggle('open');
-      });
-    }
-    
-    // Reveal animation
-    const observer = new IntersectionObserver((es) => {
-      es.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('reveal-in');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    
-    // Load tutoring materials from JSON
     async function loadTutoringMaterials() {
       try {
         const response = await fetch('data/tutoring.json');
         const data = await response.json();
         const container = document.getElementById('tutoring-content');
-        
+
         container.innerHTML = data.sections.map(section => {
-          // Build filter buttons if needed
           let filtersHtml = '';
           if (section.hasFilters && section.filterOptions) {
             filtersHtml = `
               <div class="filters" role="group" aria-label="Filter materials" data-section="${section.id}">
-                ${section.filterOptions.map((opt, i) => 
+                ${section.filterOptions.map((opt, i) =>
                   `<button class="chip" data-filter="${opt.value}" aria-pressed="${i === 0 ? 'true' : 'false'}">${opt.label}</button>`
                 ).join('')}
               </div>
             `;
           }
-          
-          // Build material cards
+
           const materialsHtml = section.materials.map(material => {
             const tagsAttr = material.tags && material.tags.length > 0 ? `data-tags="${material.tags.join(' ')}"` : '';
             return `
               <article class="project card lift" ${tagsAttr}>
                 <h3>${material.title}</h3>
                 <div class="links">
-                  <a href="${material.link}">Open PDF →</a>
+                  <a href="${material.link}">Open PDF &rarr;</a>
                 </div>
               </article>
             `;
           }).join('');
-          
+
           return `
             <section class="section reveal" data-section-id="${section.id}">
               <header class="section-head">
@@ -106,11 +76,8 @@
             </section>
           `;
         }).join('');
-        
-        // Setup reveal animations for newly added elements
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        
-        // Setup filter functionality
+
+        observeReveals();
         setupFilters();
       } catch (err) {
         console.error('Failed to load tutoring materials:', err);
@@ -121,14 +88,13 @@
         `;
       }
     }
-    
+
     function setupFilters() {
       document.querySelectorAll('.filters').forEach(filterGroup => {
-        const sectionId = filterGroup.dataset.section;
         const section = filterGroup.closest('section');
         const cards = section.querySelectorAll('.project-grid .project');
         const chips = filterGroup.querySelectorAll('.chip');
-        
+
         chips.forEach(ch => ch.addEventListener('click', () => {
           chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
           ch.setAttribute('aria-pressed', 'true');
@@ -144,87 +110,8 @@
         }));
       });
     }
-    
-    loadTutoringMaterials();
 
-    // Canvas background
-    const canvas = document.getElementById('bgfx');
-    const ctx = canvas.getContext('2d');
-    let w, h, dpr;
-    
-    function resize() {
-      dpr = Math.min(devicePixelRatio || 1, 2);
-      w = canvas.width = Math.floor(innerWidth * dpr);
-      h = canvas.height = Math.floor(innerHeight * dpr);
-      canvas.style.width = innerWidth + 'px';
-      canvas.style.height = innerHeight + 'px';
-    }
-    resize();
-    addEventListener('resize', resize);
-    
-    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const N = 40;
-    const SPEED = 0.05;
-    const nodes = Array.from({ length: N }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() * 2 - 1) * SPEED * dpr,
-      vy: (Math.random() * 2 - 1) * SPEED * dpr,
-      phase: Math.random() * Math.PI * 2,
-      freq: 0.005 + Math.random() * 0.01
-    }));
-    
-    let time = 0;
-    
-    function tick() {
-      ctx.clearRect(0, 0, w, h);
-      
-      const g1 = ctx.createRadialGradient(w * 0.15, h * 0.15, 0, w * 0.15, h * 0.15, Math.max(w, h) * 0.6);
-      g1.addColorStop(0, 'rgba(30, 70, 110, 0.12)');
-      g1.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = g1;
-      ctx.fillRect(0, 0, w, h);
-      
-      const TH = 180 * dpr;
-      
-      for (let i = 0; i < N; i++) {
-        const a = nodes[i];
-        for (let j = i + 1; j < N; j++) {
-          const b = nodes[j];
-          const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d < TH) {
-            const alpha = (1 - d / TH) * 0.12;
-            ctx.strokeStyle = `rgba(90, 228, 255, ${alpha})`;
-            ctx.lineWidth = 1 * dpr;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-      
-      for (const n of nodes) {
-        const pulse = Math.sin(time * n.freq + n.phase) * 0.3 + 0.7;
-        ctx.fillStyle = `rgba(167, 139, 250, ${0.5 + pulse * 0.3})`;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, (1.5 + pulse * 0.5) * dpr, 0, Math.PI * 2);
-        ctx.fill();
-        
-        if (!prefersReduced) {
-          n.x += n.vx;
-          n.y += n.vy;
-          if (n.x < 0 || n.x > w) n.vx *= -1;
-          if (n.y < 0 || n.y > h) n.vy *= -1;
-        }
-      }
-      
-      time++;
-      if (!prefersReduced) requestAnimationFrame(tick);
-    }
-    
-    if (prefersReduced) tick();
-    else requestAnimationFrame(tick);
+    loadTutoringMaterials();
   </script>
 </body>
 </html>

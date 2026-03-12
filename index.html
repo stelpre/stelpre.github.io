@@ -3,161 +3,88 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Stelios Prentakis — Theoretical CS & Quantum Computing</title>
+  <title>Stelios Prentakis</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#08090c" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#ffffff" />
   <meta name="description" content="Personal website of Stelios Prentakis — undergraduate researcher with interests in theoretical computer science, computational complexity, and quantum computing." />
 </head>
 <body>
-  <canvas id="bgfx" class="bg" aria-hidden="true"></canvas>
+  <header class="site-header">
+    <a class="brand" href="index.html">Stelios Prentakis</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+    <nav class="site-nav" id="site-nav">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="cv.html">CV</a>
+      <a href="updates.html">Projects</a>
+      <a href="tutoring.html">Tutoring</a>
+    </nav>
+  </header>
 
-  <main class="hero">
-    <div class="hero-inner">
-      <div class="title-row">
-        <h1 class="page-title">Stelios Prentakis</h1>
-        <img class="avatar" src="assets/profile.png" alt="Profile photo of Stelios Prentakis" />
+  <main>
+    <section class="home-hero">
+      <div class="home-hero-inner">
+        <div class="home-hero-photo">
+          <img class="avatar" src="assets/profile.png" alt="Stelios Prentakis" />
+        </div>
+        <div class="home-hero-text">
+          <h1 class="page-title">Stelios Prentakis</h1>
+          <p class="home-affiliation">National Technical University of Athens</p>
+          <p class="home-bio" id="home-bio"></p>
+          <div class="home-links" id="home-links"></div>
+        </div>
       </div>
+    </section>
 
-      <p class="subtitle">
-        Welcome to my website! I share details about my background, teaching materials in maths and physics, and updates on the projects I'm working on.
-      </p>
-
-      <div class="quick-actions">
-        <a href="cv.html" class="navcard">
-          <h2>My CV</h2>
-          <p>Academic background, research experience, and achievements.</p>
-        </a>
-        <a href="tutoring.html" class="navcard">
-          <h2>Tutoring Material</h2>
-          <p>Notes and exercises for students in Maths and Physics.</p>
-        </a>
-        <a href="updates.html" class="navcard">
-          <h2>Project Updates</h2>
-          <p>Research progress and side projects.</p>
-        </a>
-      </div>
-    </div>
+    <section class="section reveal">
+      <header class="section-head">
+        <h2>News</h2>
+      </header>
+      <div class="news-list" id="news-list"></div>
+    </section>
   </main>
 
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Stelios Prentakis</p>
+  </footer>
+
+  <script src="main.js"></script>
   <script>
-    // Quantum-inspired background animation
-    const canvas = document.getElementById('bgfx');
-    const ctx = canvas.getContext('2d');
-    let w, h, dpr;
-    
-    function resize() {
-      dpr = Math.min(devicePixelRatio || 1, 2);
-      w = canvas.width = Math.floor(innerWidth * dpr);
-      h = canvas.height = Math.floor(innerHeight * dpr);
-      canvas.style.width = innerWidth + 'px';
-      canvas.style.height = innerHeight + 'px';
-    }
-    resize();
-    addEventListener('resize', resize);
-    
-    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    // Quantum nodes
-    const N = 50;
-    const SPEED = 0.06;
-    const nodes = Array.from({ length: N }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() * 2 - 1) * SPEED * dpr,
-      vy: (Math.random() * 2 - 1) * SPEED * dpr,
-      phase: Math.random() * Math.PI * 2,
-      freq: 0.005 + Math.random() * 0.01
-    }));
-    
-    let time = 0;
-    
-    function tick() {
-      ctx.clearRect(0, 0, w, h);
-      
-      // Subtle ambient gradients - more refined
-      const g1 = ctx.createRadialGradient(w * 0.15, h * 0.25, 0, w * 0.15, h * 0.25, Math.max(w, h) * 0.6);
-      g1.addColorStop(0, 'rgba(40, 80, 120, 0.08)');
-      g1.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = g1;
-      ctx.fillRect(0, 0, w, h);
-      
-      const g2 = ctx.createRadialGradient(w * 0.85, h * 0.75, 0, w * 0.85, h * 0.75, Math.max(w, h) * 0.5);
-      g2.addColorStop(0, 'rgba(90, 60, 120, 0.06)');
-      g2.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = g2;
-      ctx.fillRect(0, 0, w, h);
-      
-      const TH = 180 * dpr;
-      
-      // Draw connections - more subtle academic aesthetic
-      for (let i = 0; i < N; i++) {
-        const a = nodes[i];
-        for (let j = i + 1; j < N; j++) {
-          const b = nodes[j];
-          const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d < TH) {
-            const alpha = (1 - d / TH) * 0.1;
-            const wave = Math.sin(time * 0.015 + a.phase + b.phase) * 0.5 + 0.5;
-            
-            // Gradient line - softer colors
-            const gradient = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
-            gradient.addColorStop(0, `rgba(100, 216, 255, ${alpha * (0.4 + wave * 0.4)})`);
-            gradient.addColorStop(0.5, `rgba(177, 156, 255, ${alpha * 0.8})`);
-            gradient.addColorStop(1, `rgba(79, 209, 197, ${alpha * (0.4 + wave * 0.4)})`);
-            
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 0.8 * dpr;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
+    async function loadHomeData() {
+      try {
+        const [cvRes, updatesRes] = await Promise.all([
+          fetch('data/cv.json'),
+          fetch('data/updates.json')
+        ]);
+        const cv = await cvRes.json();
+        const updates = await updatesRes.json();
+
+        document.getElementById('home-bio').textContent = cv.about;
+
+        const linksEl = document.getElementById('home-links');
+        linksEl.innerHTML = cv.contacts.map(c =>
+          `<a href="${c.url}" class="home-contact-link">${c.label}</a>`
+        ).join('');
+
+        const newsEl = document.getElementById('news-list');
+        const recent = updates.updates.slice(0, 4);
+        newsEl.innerHTML = recent.map(u => {
+          const date = new Date(u.date);
+          const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          return `<div class="news-item"><time datetime="${u.date}">${formatted}</time><span>${u.text}</span></div>`;
+        }).join('');
+
+        observeReveals();
+      } catch (err) {
+        console.error('Failed to load home data:', err);
       }
-      
-      // Draw nodes - refined particles
-      for (const n of nodes) {
-        const pulse = Math.sin(time * n.freq + n.phase) * 0.25 + 0.75;
-        const size = (1.2 + pulse * 0.5) * dpr;
-        
-        // Soft glow
-        const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, size * 5);
-        glow.addColorStop(0, `rgba(177, 156, 255, ${0.2 * pulse})`);
-        glow.addColorStop(1, 'rgba(177, 156, 255, 0)');
-        ctx.fillStyle = glow;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, size * 5, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Core particle
-        ctx.fillStyle = `rgba(100, 216, 255, ${0.6 + pulse * 0.25})`;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, size, 0, Math.PI * 2);
-        ctx.fill();
-        
-        if (!prefersReduced) {
-          n.x += n.vx;
-          n.y += n.vy;
-          if (n.x < 0 || n.x > w) n.vx *= -1;
-          if (n.y < 0 || n.y > h) n.vy *= -1;
-        }
-      }
-      
-      time++;
-      if (!prefersReduced) requestAnimationFrame(tick);
     }
-    
-    if (prefersReduced) {
-      tick();
-    } else {
-      requestAnimationFrame(tick);
-    }
+    loadHomeData();
   </script>
 </body>
 </html>

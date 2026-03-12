@@ -1,30 +1,37 @@
 {
   "projects": [
     {
+      "title": "Robot search and evacuation problem",
+      "description": "Ongoing project. In collaboration with a postgraduate student, under the supervision of my professor. Studying upper and lower bounds for the search and evacuation problem of robots on a unit disk. Gained foundations in computational geometry and learned how to apply numerical methods to derive upper bounds.",
+      "tags": ["computational geometry"],
+      "link": "",
+      "linkText": ""
+    },
+    {
+      "title": "Randomized Decision Tree Complexity for Recursive Majority Decision Trees",
+      "description": "Ongoing project. Supervised by Prof. Nikos Leonardos. Developing a randomized algorithm to evaluate a recursive majority decision tree. Studied the state of the art in recursive majority decision tree complexity, online learning, and basic information theory. Currently working on implementing potential functions to track algorithm progress.",
+      "tags": ["decision trees"],
+      "link": "",
+      "linkText": ""
+    },
+    {
       "title": "Personal Website",
-      "description": "A modern academic portfolio showcasing my background, teaching materials, and research projects.",
-      "tags": ["programming"],
+      "description": "Finished but regularly updated. A modern academic portfolio showcasing my background, teaching materials, and research projects.",
+      "tags": ["personal"],
       "link": "https://stelpre.github.io/",
       "linkText": "View Live →"
     },
     {
-      "title": "Randomized Decision Tree Complexity",
-      "description": "Research on finding improved lower bounds for the randomized decision tree complexity of T-majority decision trees. Supervised by Prof. Nikos Leonardos.",
-      "tags": ["complexity"],
-      "link": "",
-      "linkText": ""
-    },
-    {
       "title": "Woundy: 3D Wound Scanning & Assessment Device",
-      "description": "Developing a biomedical device for automated 3D wound imaging and volumetric reconstruction.\nDesigned algorithms for sensor data denoising and 3D surface reconstruction to enable automated clinical assessment.\nLeading the software implementation and integration of the imaging prototype.",
-      "tags": ["biomedical", "3D imaging"],
+      "description": "Ongoing project. As part of a student team, developing a biomedical device for automated 3D wound imaging and volumetric reconstruction. Designed algorithms for sensor data denoising and 3D surface reconstruction to enable automated clinical assessment. Leading the software implementation and integration of the imaging prototype.",
+      "tags": ["biomedical"],
       "link": "",
       "linkText": ""
     },
     {
-      "title": "EEG Denoising and Classification",
-      "description": "Coordinated a small team of peers to develop a custom biosignal analysis framework.\nDesigned the Machine Learning pipeline architecture, focusing on signal denoising and artifact removal for raw EEG data.",
-      "tags": ["machine learning", "signal processing"],
+      "title": "Lower Bounds for Randomized Decision Tree Complexity for k-Threshold Gate Trees",
+      "description": "Past project. Supervised by Prof. Nikos Leonardos. Developed a recursive formula for calculating lower bounds on the randomized decision tree complexity of decision trees with k-threshold gates. Derived closed-form expressions for two specific subcases. Gained understanding of decision tree complexity (classical, randomized, and quantum) and studied how recursive formulas can be expanded into closed forms.",
+      "tags": ["decision trees"],
       "link": "",
       "linkText": ""
     }
