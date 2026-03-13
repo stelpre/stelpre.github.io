@@ -31,17 +31,13 @@
       <header class="section-head">
         <h2>My CV</h2>
       </header>
-      <div class="grid two">
+      <div>
         <article class="card lift">
           <h3>Download</h3>
           <p style="margin-bottom: 16px;">Get my full CV in PDF format.</p>
           <a class="btn primary" href="assets/autoCV.pdf" id="cv-download-link">Download CV (PDF)</a>
           <h3 style="margin-top: 24px;">Contact Me</h3>
           <ul class="inline-icons" id="contact-links"></ul>
-        </article>
-        <article class="card lift">
-          <h3>About</h3>
-          <p id="about-text"></p>
         </article>
       </div>
     </section>
@@ -60,7 +56,6 @@
         const response = await fetch('data/cv.json');
         const data = await response.json();
 
-        document.getElementById('about-text').textContent = data.about;
         document.getElementById('cv-download-link').href = data.cvPdfUrl;
 
         const contactContainer = document.getElementById('contact-links');

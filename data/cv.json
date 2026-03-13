@@ -22,24 +22,62 @@
       "title": "Education",
       "items": [
         {
-          "title": "National Technical University of Athens",
-          "subtitle": "Diploma in Electrical and Computer Engineering (Integrated Master’s)",
-          "date": "Oct. 2022 – July 2027 (exp.)",
-          "description": "Minors: Computer Software, Computer Systems, Bioengineering\nSelected Coursework: Algorithms & Complexity, Fundamentals of Computer Science, Quantum Mechanics, Computer Programming",
+          "title": "National Technical University of Athens (NTUA)",
+          "subtitle": "Diploma in Electrical and Computer Engineering | Integrated Master's",
+          "date": "2022 – 2027 (exp.)",
+          "description": "GPA: 8.9 / 10 | Algorithms & Complexity, Computability & Complexity, Discrete Mathematics, FoCS",
           "details": []
         }
       ]
     },
     {
-      "id": "research",
-      "title": "Research Experience",
+      "id": "ongoing-projects",
+      "title": "Ongoing Projects",
       "items": [
         {
-          "title": "Research on Decision Tree and Quantum Query Complexity",
-          "subtitle": "Advisor: Prof. Leonardos • National Technical University of Athens",
-          "date": "Summer 2025 – Present",
-          "description": "Investigating the randomized query complexity of decision trees utilizing k-threshold gates.\nCurrently analyzing the complexity of Recursive Majority functions.",
-          "details": []
+          "title": "Robot Search and Evacuation Problem",
+          "subtitle": "Computational Geometry | Communication Complexity",
+          "date": "Collaborative project",
+          "description": "",
+          "details": [
+            "Improving complexity bounds for the search and evacuation problem of robots on a unit disk",
+            "Learned how to apply MATLAB code for numerical method proofs"
+          ]
+        },
+        {
+          "title": "Randomized Decision Tree Complexity for Recursive Majority Decision Trees",
+          "subtitle": "Decision Trees | Computational Complexity",
+          "date": "Supervised by prof. N. Leonardos",
+          "description": "",
+          "details": [
+            "Developing a randomized algorithm to evaluate a recursive majority decision tree",
+            "Created simulations in C++ and Python"
+          ]
+        },
+        {
+          "title": "Woundy: 3D Wound Scanning & Assessment Device",
+          "subtitle": "Signal Denoising | Biomedical Eng.",
+          "date": "Student organized team project",
+          "description": "",
+          "details": [
+            "Designed algorithms for sensor data denoising using MATLAB"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "past-projects",
+      "title": "Past Projects",
+      "items": [
+        {
+          "title": "Lower Bounds for Randomized k-Threshold Gate Decision Tree Complexity",
+          "subtitle": "Decision Trees",
+          "date": "Supervised by prof. N. Leonardos",
+          "description": "",
+          "details": [
+            "Developed a recursive formula for the randomized decision tree complexity of k-threshold gate decision trees",
+            "Derived closed-form expressions for two specific instances of the problem"
+          ]
         }
       ]
     },
@@ -48,84 +86,104 @@
       "title": "Teaching Experience",
       "items": [
         {
-          "title": "Laboratory Teaching Assistant: Computer Programming",
-          "subtitle": "National Technical University of Athens (NTUA)",
-          "date": "Fall 2025 – Present",
-          "description": "Mentored first year undergraduate students in the fundamentals of computer programming and algorithmic thinking.",
+          "title": "Laboratory Teaching Assistant | SoftLab, NTUA",
+          "subtitle": "",
+          "date": "Oct 2025 – Feb 2026",
+          "description": "Guided first-year students in programming fundamentals using C/C++ as part of a paid scholarship program",
           "details": []
         },
         {
-          "title": "Private Tutor: Mathematics & Physics",
+          "title": "Private Tutor",
           "subtitle": "",
-          "date": "Winter 2019 – Present",
-          "description": "Delivered tutoring in Mathematics, Physics and Chemistry for students aged 12-18.\nAdapted complex concepts into accessible lessons to improve student performance in standardized exams.",
+          "date": "2017 – Present",
+          "description": "Tutored students in mathematics, physics, and chemistry, from junior high competitions to national examinations",
           "details": []
         }
       ]
     },
     {
-      "id": "professional_service",
-      "title": "Professional Service & Leadership",
+      "id": "extracurriculars",
+      "title": "Extracurriculars & Volunteering",
       "items": [
         {
-          "title": "IEEE NTUA Student Branch",
-          "subtitle": "Member, Computer Society, Quantum Computing & Machine Learning Chapter",
-          "date": "Fall 2024 – Present",
-          "description": "Organizing technical workshops and seminars to promote engagement with Machine Learning and Quantum Computing concepts.\nContributing to small scale projects, focusing on the curation of custom datasets and model implementation and the communication of quantum computing concepts to peers.",
+          "title": "Machine Learning Chapter | IEEE NTUA SB Computer Society",
+          "subtitle": "",
+          "date": "Member",
+          "description": "Organized events (AI Lab 2025) to promote the AI fundamentals to fellow students and participated in small scale projects like fine-tuning neural networks for specific tasks.",
+          "details": []
+        },
+        {
+          "title": "Quantum Computing Chapter | IEEE NTUA SB Computer Society",
+          "subtitle": "",
+          "date": "Member",
+          "description": "Active involvement in weekly lectures that introduce quantum computing concepts to fellow students and currently developing a quantum computing event due early April.",
           "details": []
         }
       ]
     },
     {
-      "id": "achievements",
-      "title": "Achievements",
+      "id": "honors",
+      "title": "Honors & Awards",
       "items": [
         {
-          "title": "IEEEXtreme 18.0 and 19.0 Programming Competition",
-          "subtitle": "IEEE",
+          "title": "IEEEXtreme 18.0 & 19.0 · International Programming Competition",
+          "subtitle": "",
           "date": "2024, 2025",
           "description": "",
           "details": []
         },
         {
-          "title": "National Physics Competition Aristotle – Honorable Mention",
-          "subtitle": "NKUA & HPSEE",
+          "title": "National Physics Competition \"Aristotle\" · Honorable Mention | NKUA & HPSEe",
+          "subtitle": "",
           "date": "2022",
           "description": "",
           "details": []
         },
         {
-          "title": "35th and 37th National Mathematical Olympiad Archimedes",
-          "subtitle": "Hellenic Mathematical Society",
+          "title": "National Mathematical Olympiad \"Archimedes\" · 35th & 37th editions | Hellenic Math. Society",
+          "subtitle": "",
           "date": "2018, 2020",
           "description": "",
           "details": []
         },
         {
-          "title": "30th and 31st Panhellenic Student Competition in Informatics",
-          "subtitle": "Hellenic Society for Informatics",
+          "title": "Panhellenic Competition in Informatics · 30th & 31st editions | Hellenic Society for Informatics",
+          "subtitle": "",
           "date": "2018, 2019",
           "description": "",
           "details": []
         },
         {
-          "title": "2nd Student Conference on Research and Science",
-          "subtitle": "NCSR Demokritos",
+          "title": "Student Conference on Research and Science · NCSR \"Demokritos\"",
+          "subtitle": "",
           "date": "2018",
           "description": "",
           "details": []
         },
         {
-          "title": "National Student Competition in Mathematics – 3rd Prize",
-          "subtitle": "Hellenic Mathematical Society",
+          "title": "National Competition in Mathematics · 3rd Prize | Hellenic Mathematical Society",
+          "subtitle": "",
           "date": "2018",
           "description": "",
           "details": []
         },
         {
-          "title": "Gauss Contest – Top 25% globally",
-          "subtitle": "CEMC, University of Waterloo",
+          "title": "Gauss Contest · Top 25% globally | CEMC, University of Waterloo",
+          "subtitle": "",
           "date": "2017",
+          "description": "",
+          "details": []
+        }
+      ]
+    },
+    {
+      "id": "languages",
+      "title": "Languages",
+      "items": [
+        {
+          "title": "Greek (native) | English (C2 Certificate of Proficiency)",
+          "subtitle": "",
+          "date": "",
           "description": "",
           "details": []
         }
@@ -133,4 +191,3 @@
     }
   ]
 }
-
